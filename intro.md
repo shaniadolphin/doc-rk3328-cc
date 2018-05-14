@@ -45,9 +45,9 @@ This incredible ultra small board runs Android 7.1 or Ubuntu 16.04 smoothly and 
  - ROC-RK3328-CC main board
  - Micro USB cable
 
-The following accessories are highly recommended, especially you are doing developer's work:
+The following accessories are highly recommended, especially when you are doing developer's work:
  - [5V2A US Adapter], a good power source is a must have
- - [USB Serial Adapter], for serial console debug
+ - [USB Serial Adapter], for serial console debugging
  - [eMMC Flash], provides more system performance and reliability
 
 [ROC-RK3328-CC]: http://en.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC Official Website"
