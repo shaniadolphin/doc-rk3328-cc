@@ -31,7 +31,7 @@ When you build the Android SDK, you'll get a list of `boot.img`, `kernel.img`, `
 
 Rockchip firmware is meant to be flashed to eMMC, following instructions depending on your OS: [Windows](flash_emmc_windows.html), [Linux](flash_emmc_linux.html).
 
-Android firmware with Rockchip format can also be flashed to SD card in Windows. Please check [here](flash_sd_windows.html#flashing-rockchip-firmware).
+Android firmware in Rockchip format can also be flashed to SD card in Windows, using [SD_Firmware_Tool](flash_sd_windows.html#flashing-rockchip-firmware).
 
 **Raw firmware** download list:
  - Android 7.1.2 [💾](http://t-firefly.oss-cn-hangzhou.aliyuncs.com/product/RK3328/Firmware/Android/ROC-RK3328-CC_Android7.1.2_180411/ROC-RK3328-CC_Android7.1.2_180411.img.gz)
