@@ -30,7 +30,7 @@ Download Linux SDK:
 # U-Boot
 git clone -b release https://github.com/FireflyTeam/u-boot
 # Kernel
-git clone -b release-4.4 https://github.com/FireflyTeam/kernel
+git clone -b release-4.4 https://github.com/FireflyTeam/kernel --depth=1
 # Build
 git clone -b debian https://github.com/FireflyTeam/build
 # Rkbin
@@ -38,8 +38,6 @@ git clone -b master https://github.com/FireflyTeam/rkbin
 ```
 
 You can also browse the source code online using the github links above.
-
-TODO: kernel.git is too big to download from github
 
 The board build config is inside:
 
