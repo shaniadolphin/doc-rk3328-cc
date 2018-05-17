@@ -32,7 +32,7 @@ Download Ubuntu core:
 
 Create a root filesystem image file sized 1000M and populate it with the ubuntu base tar file:
 
-    falloc -l 1000M rootfs.img
+    fallocate -l 1000M rootfs.img
     sudo mkfs.ext4 -F ROOTFS rootfs.img 
     mkdir mnt 
     sudo mount rootfs.img mnt
