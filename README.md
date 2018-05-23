@@ -1,12 +1,6 @@
-# Getting Started
+### ROC-RK3328-CC Manual
 
-To get started, read [STARTED](STARTED.md) document.
-
-Below is the template of the board's `README.md`.
-
-### Firefly-Board Manual
-
-This is the manual of the Firefly-Board board.
+This is the manual of the ROC-RK3328-CC board.
 
 The manual can be built by:
 
