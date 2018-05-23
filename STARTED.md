@@ -77,18 +77,12 @@ This only needs to do once, then proceed next.
 ### Create the HTML output
 
 ```
-# Activate the sphinx-markdown environment.
-# This only needs to do once.
-source ~/sphinx-markdown/bin/activate
-
 # Make html
-make -C en 
-make -C zh_CN
+make
 
 # If the HTML pages seems weird, you need to have a clean rebuild.
 # Rebuild html with:
-make -C en clean html
-make -C zh_CN clean html
+make clean html
 ```
 
 The HTML output will be:
@@ -101,12 +95,12 @@ browsing mode, the search result will not have context.
 Or you can fire up a simple web server:
 
 ```
-cd en/_build/html
 python -m SimpleHTTPServer 8000
 ```
 
-Then go to the url `http://<ip>:8000` in the browser to view the result. This is
-the recommended way to preview the HTML document.
+Then go to the url `http://<ip>:8000/en/_build/html` for English or
+`http://<ip>:8000/zh_CN/_build/html` for Chinese in the browser to view the
+result. This is the recommended way to preview the HTML document.
 
 ### Create the PDF output
 
@@ -118,12 +112,7 @@ sudo apt install texlive-xetex texlive-lang-cjk
 
 Once latex is ready, produce the PDF with:
 ```
-# Activate the sphinx-markdown environment.
-# This only needs to do once.
-. ~/sphinx-markdown/bin/activate
-
-make -C en pdf
-make -C zh pdf
+make pdf
 ```
 
 The PDF files will be put in:
@@ -139,13 +128,7 @@ Assume that the web directory is `/var/www/html/FireflyBoard`, which you have wr
 Then use rsync to copy all the static HTML files:
 
 ```
-# Activate the sphinx-markdown environment.
-# This only needs to do once.
-. ~/sphinx-markdown/bin/activate
-
-# Rebuild html with:
-make -C en clean html
-make -C zh_CN clean html
+make clean html
 
 # Deploy the contents:
 rsync -av --delete en/_build/html/ /var/www/html/FireflyBoard/en/
