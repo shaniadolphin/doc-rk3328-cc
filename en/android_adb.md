@@ -24,7 +24,7 @@ C:\adb\adb shell
 
 You are entering the adb shell if everything goes well.
 
-## Adb Installation in Ubuntu
+### Adb Installation in Ubuntu
 
 1. Install adb tool：
     ```
