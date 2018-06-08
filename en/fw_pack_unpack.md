@@ -35,7 +35,7 @@ backup          RESERVED
  - `Image/trust.img`: The Arm Trusted Image.
  - `Image/misc.img`: misc partition image, used to control boot mode of Android.
  - `Image/kernel.img`: Android kernel image.
- - `Image/resource.img`: Resource image with boot log and kernel device tree blob.
+ - `Image/resource.img`: Resource image with boot logo and kernel device tree blob.
  - `Image/boot.img`: Android initramfs, a root filesystem loaded in normal boot, contains important initialization and services description.
  - `Image/recovery.img`: Recovery mode image.
  - `Image/system.img`: Android system partition image.

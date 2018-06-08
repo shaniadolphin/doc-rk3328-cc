@@ -80,7 +80,7 @@ For more information about installation and usage of `upgrade_tool`， check [he
 
 ### rkdeveloptool
 
-`rkdeveloptool` is an open-source command line flashing tool developed by Rockchip, which is an alternative to the close-source `upgrade_tool`(#upgrade-tool).
+`rkdeveloptool` is an open-source command line flashing tool developed by Rockchip, which is an alternative to the close-source [upgrade_tool](#upgrade-tool).
 
 `rkdeveloptool` do not support firmware in proprietary Rockchip format. 
 
@@ -114,13 +114,13 @@ To flash raw image:
     rkdeveloptool wl 0x0       out/system.img
     rkdeveloptool rd           # reset device to boot
 
-Partition offset can be found [here](#partition%20offset).
+Partition offset can be found [here](#linux-partition-offset).
 
 ### upgrade_tool
 
-`upgrade_tool** is a close-sourced command line tool provided by Rockchip, which supports flashing partition image and firmware in the proprietary Rockchip format.
+`upgrade_tool` is a close-sourced command line tool provided by Rockchip, which supports flashing partition image and firmware in the proprietary Rockchip format.
 
-Download  [Linux_Upgrade_Tool](https://gitlab.com/TeeFirefly/RK3328-Nougat/blob/roc-rk3328-cc/RKTools/linux/Linux_Upgrade_Tool/Linux_Upgrade_Tool_v1.24.zip**, and install it to your host:
+Download  [Linux_Upgrade_Tool](https://gitlab.com/TeeFirefly/RK3328-Nougat/blob/roc-rk3328-cc/RKTools/linux/Linux_Upgrade_Tool/Linux_Upgrade_Tool_v1.24.zip), and install it to your Linux host:
 
     unzip Linux_Upgrade_Tool_v1.24.zip
     cd Linux_UpgradeTool_v1.24
@@ -150,6 +150,7 @@ If errors occur due to flash storage problem, you can try to low format or erase
     upgrade_tool ef   # erase flash
 
 ### udev
+
 Create `/etc/udev/rules.d/99-rk-rockusb.rules` with following content[1](https://github.com/rockchip-linux/rkdeveloptool/blob/master/99-rk-rockusb.rules). Replace the group `users` with your actual Linux group if neccessary:
 ```
 SUBSYSTEM!="usb", GOTO="end_rules"

@@ -31,7 +31,7 @@ Run `SD_Firmware_Tool.exe`:
 1. Plug in the SD card.
 2. Select the SD card from the combo box.
 3. Check on the "SD Boot" option.
-4. Click "Firmware" button, and select the firmware in the file dialog.  
+4. Click "Firmware" button, and select the firmware in the file dialog.
 5. Click "Create" button.
 6. A warning dialog will show up. By making sure you have the right SD card device selected, select "Yes" to continue.
 7. Wait for the operation to complete, until the info dialog shows up.

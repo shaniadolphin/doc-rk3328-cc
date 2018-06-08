@@ -114,9 +114,7 @@ cp defconfig arch/arm64/configs/fireflyrk3328_linux_defconfig
 
 ## Building Root Filesystem
 
-You can download the prebuilt root filesystem:
- 
-Or build one yourself by following [Linux Building Root Filesystem](linux_build_rootfilesystem.html).
+You can download the prebuilt root filesystem or build one yourself by following [Linux Building Root Filesystem](linux_build_rootfilesystem.html).
 
 ## Packing Raw Format Firmware
 

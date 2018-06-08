@@ -37,9 +37,9 @@ Next, depending on the OS you are using, we'll guide you through the detailed st
 **Install Driver**
 
 Use the recommended driver from your USB serial adapter vendor. If not available, you can check the chipset and try the following drivers:
- - CH340  [🔗](http://www.wch.cn/downloads.php?name=pro&proid=5)
- - PL2303 [🔗](http://www.prolific.com.tw/US/ShowProduct.aspx?pcid=41)
- - CP210X [🔗](http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx)
+ - [CH340](http://www.wch.cn/downloads.php?name=pro&proid=5)
+ - [PL2303](http://www.prolific.com.tw/US/ShowProduct.aspx?pcid=41)
+ - [CP210X](http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx)
 
 > If PL2303 does not work under Win8，you can try to downgrade the driver to version 3.3.5.122 or before.
 
@@ -92,7 +92,7 @@ Install it with:
 Start `picocom`:
 
 ```
-$ picocom -b 1500000 /dev/ttyUSB?
+$ picocom -b 1500000 /dev/ttyUSB0
 picocom v3.1
 
 port is        : /dev/ttyUSB0

@@ -20,10 +20,10 @@ If you still can’t find what you need here, read [Serial Debug](debug.html) se
    - 10/100/1000Mb Ethernet
    - 1 x IR Receiver Module，supports self-defined IR remote
    - 40 pin expansion interface, contains GPIO, I2S, SPI, I2C, UART, PWM SPDIF, DEBUG 
- * Display    
+ * Display
    - HDMI 2.0 ( Type-A ), supports maximum 4K@60Hz display
    - TV out, CVBS display, in accordance with 480i, 576i standard
- * Audio    
+ * Audio
    - I2S, supports 8 channels
    - SPDIF, for audio output
  * Video

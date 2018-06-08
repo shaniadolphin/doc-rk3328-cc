@@ -82,7 +82,7 @@ You can also view the source code online at:
 ./FFTools/make.sh -u -j8
 ```
 
-**Compiling Android**    
+**Compiling Android**
 ```bash
 ./FFTools/make.sh -a -j8
 ```
@@ -171,10 +171,10 @@ The following is a list of the image files:
  - `boot.img`: Android initramfs image, contains base filesystem of Android root directory, whcih is responsible for initializing and loading the system partition.
  - `system.img`: Android system partition image in ext4 filesystem format.
  - `kernel.img`: kernel image.
- - `resource.img`: Resource image, containing boot log and kernel device tree blob.
+ - `resource.img`: Resource image, containing boot logo and kernel device tree blob.
  - `misc.img`: misc partition image, responsible for starting the mode switch and first aid mode parameter transfer.
  - `recovery.img`: Recovery mode image.
- - `rk3328_loader_v1.08.244.bin`: Loader files
- - `uboot.img`: U-Boot image file
- - `trust.img`: Sleep wake up related files
- - `parameter.txt`: Partition layout and kernel command line
+ - `rk3328_loader_v1.08.244.bin`: Loader files.
+ - `uboot.img`: U-Boot image file.
+ - `trust.img`: Arm trusted file (ATF) image file.
+ - `parameter.txt`: Partition layout and kernel command line.

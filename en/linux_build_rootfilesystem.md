@@ -11,7 +11,7 @@ sudo apt-get install -f
 
 ## Compile the Root File System
 
-Build a basic Debian system using the ubuntu-build-service:
+Build a basic Debian system using the `ubuntu-build-service`:
 ```bash
 VERSION=stretch TARGET=desktop ARCH=armhf ./mk-base-debian.sh
 ```
@@ -39,7 +39,7 @@ Create a root filesystem image file sized 1000M and populate it with the ubuntu 
     sudo tar -xzvf ubuntu-base-16.04.1-base-arm64.tar.gz -C mnt/
     sudo cp -a /usr/bin/qemu-aarch64-static mnt/usr/bin/
 
-`qemu-aarch64-static` is the magic cure here, which enables chroot into an arm64 filesystem under amd64 host system.
+`qemu-aarch64-static` is the magic cure here, which make possible chrooting into an Arm64 filesystem under x86_64 host system.
 
 Chroot to the new filesystem and initialize:
 
