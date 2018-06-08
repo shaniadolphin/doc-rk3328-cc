@@ -1,8 +1,8 @@
-# 解包/打包 Rockchip 固件
+# 解包/打包 RK 固件
 
-## Rockchip 固件格式
+## RK 固件格式
 
-rockchip 固件 `release_update.img` 包含引导加载程序 `loader.img` 和实际的固件数据`update.img`:
+RK 固件 `release_update.img` 包含引导加载程序 `loader.img` 和实际的固件数据`update.img`:
 
 release_update.img
 ```bash
@@ -10,7 +10,7 @@ release_update.img
 `- update.img
 ```
 
-`update.img`包含有多个镜像文件，由名为 `package-file` 的控制文件描述。一个典型的 `package-file` 如下:
+`update.img` 是打包工具读取 `package-file` 索引文件从而将多个映像文件打包而成固件 。一个典型的 `package-file` 文件的内容为:
 ```bash
 # NAME Relative path
 package-file    package-file
@@ -28,19 +28,18 @@ backup          RESERVED
 #update-script  update-script
 #recover-script recover-script
 ```
- - `package-file`：`update.img` 的包描述，也包含在 `update.img` 中
- - `Image/MiniLoaderAll.bin`：通过 cpu ROM 代码加载的第一个 bootloader
+ - `package-file`：`update.img` 的索引文件，也包含在 `update.img` 中。
+ - `Image/MiniLoaderAll.bin`：通过 CPU ROM 代码加载的第一个 bootloader。
  - `Image/parameter.txt`：参数文件，可以在其中设置内核启动参数和分区布局。
- - `Image/trust.img`：Arm trust 镜像
- - `Image/misc.img`：misc 分区镜像，用于控制 Android 的启动模式
- - `Image/kernel.img`：Android 内核镜像
- - `Image/resource.img`：具有引导日志和内核设备树 blob 的资源镜像
- - `Image/boot.img`：Android initramfs，一个在正常启动时加载的根文件系统，包含重要的初始化和服务描述
- - `Image/recovery.img`：Recovery 模式镜像
- - `Image/system.img`：Android 系统分区镜像
+ - `Image/trust.img`：Arm trust file (ATF) 映像，用于安全启动。
+ - `Image/misc.img`：misc 分区映像，用于控制 Android 的启动模式。
+ - `Image/kernel.img`：Android 内核映像。
+ - `Image/resource.img`：具有启动图片和内核设备树的资源映像。
+ - `Image/boot.img`：Android initramfs，一个在正常启动时加载的根文件系统，包含重要的初始化和服务描述。
+ - `Image/recovery.img`：Recovery 模式映像。
+ - `Image/system.img`：Android 系统分区映像。
 
-解包是从 `release_update.img` 中提取 `update.img`，然后解开里面的所有镜像文件
-重新打包时，这是相反的过程。它将由 `package-file` 描述的镜像文件合成到 `update.img` 中，该文件将与 bootloader 一起打包以创建最终的 `release_update.img`
+解包是从 `release_update.img` 中提取 `update.img`，然后解开里面的所有映像文件。 重新打包时，则是相反的过程。它将由 `package-file` 描述的所有映像文件合成到 `update.img` 中，该文件将与 bootloader 一起打包以创建最终的 `release_update.img`。
 
 ## 安装工具
 
@@ -51,7 +50,7 @@ make
 sudo cp afptool img_unpack img_maker mkkrnlimg /usr/local/bin
 ```
 
-## 解包 Rockchip 固件
+## 解包 RK 固件
 
  - 解包 `release_update.img`:
   ```
@@ -104,9 +103,9 @@ sudo cp afptool img_unpack img_maker mkkrnlimg /usr/local/bin
   1 directory, 12 files
   ```
 
-## 打包 Rockchip 固件
+## 打包 RK 固件
 
-首先, 确保在 `parameter.txt` 文件中的 `system` 分区足够大能容纳下 `system.img`. 参考 [Parameter 文件格式](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf) 可理解分区布局.
+首先, 确保在 `parameter.txt` 文件中的 `system` 分区足以容纳 `system.img`. 参考 [《Parameter 文件格式》](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf) 了解分区布局。
 
 例如，在 `parameter.txt` 的前缀为 "CMDLINE" 的行中，可以找到类似于以下内容的 `system` 分区的描述:
 
@@ -114,7 +113,7 @@ sudo cp afptool img_unpack img_maker mkkrnlimg /usr/local/bin
 0x00200000@0x000B0000(system)
 ```
 
-"@"之前的十六进制字符串是扇区中的分区大小（此处为 1 扇区= 512 字节），因此系统分区的大小为:
+"@"之前的十六进制字符串是分区的大小（以扇区为单位，此处为 1 扇区= 512 字节），因此系统分区的大小为:
 ```bash
 $ echo $(( 0x00200000 * 512 / 1024 / 1024 ))M
 1024M
@@ -123,9 +122,9 @@ $ echo $(( 0x00200000 * 512 / 1024 / 1024 ))M
 创建 `release_update_new.img`:
 ```bash
 
-#当前目录仍然是 update/，它包含软件包文件，
-#和包文件列表仍然存在的文件
-#将参数文件复制到参数中，因为默认情况下使用 afptool
+# 当前目录仍然是 update/，package-file 文件
+# 以及所描述的所有映像文件均在此目录下。
+# 将参数文件复制为 "parameter" 文件，afptool 默认使用此名。
 
 $ afptool -pack . ../update_new.img
 ------ PACKAGE ------
@@ -154,7 +153,7 @@ success!
 
 ### 自定义 system.img
 
-system.img 是 ext4 文件系统格式的镜像文件，可以直接挂载到系统进行修改:
+`system.img` 是 ext4 文件系统格式的映像文件，可以直接挂载到系统进行修改:
 
 ```bash
 sudo mkdir -p /mnt/system
@@ -164,21 +163,21 @@ cd /mnt/system
 # Pay attention to the free space, 
 # You can not add too many APKs
 
-# 结束时，需要卸载掉
+# 结束时，需要卸载
 cd /
 sudo umount /mnt/system
 ```
 
-请注意，`system.img` 的可用空间几乎为 0，如果需要扩展镜像文件，请相应地调整 `parameter.txt` 中的分区布局
+请注意，`system.img` 的可用空间几乎为 0，如果需要扩展映像文件，请相应地调整 `parameter.txt` 中的分区布局。
 
-以下是如何将镜像文件的大小增加 128MB 的示例
+以下是如何将映像文件的大小增加 128MB 的示例。
 
 扩展之前先确保 `system.img` 没有被系统挂载上:
 ```
 mount | grep system
 ```
 
-Resize 镜像文件:
+改变映像文件及其内在文件系统的大小:
 ```bash
 dd if=/dev/zero bs=1M count=128 >> Image/system.img
 # Expand file system information

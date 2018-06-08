@@ -1,18 +1,18 @@
 # Adb 介绍
 
-`Adb` 是 Android Debug Bridge 的简称，是 Android 的命令行调试工具，可以完成多种功能，如跟踪系统日志、上传下载文件、安装应用等
+`Adb` 是 Android Debug Bridge 的简称，是 Android 的命令行调试工具，可以完成多种功能，如跟踪系统日志、上传下载文件、安装应用等。
 
-## 准备
-使用 `adb`时，你需要
+## 准备工作
+使用 `adb`时，你需要：
 1. 使用公对公 USB 线连接电脑和板子的 USB OTG 口:
    ![](img/hw_board_usbconn.png)
-2. 在跑安卓的板子上，选择 `Settings` -> `USB`，然后勾选 `Connect to PC` 选项
-3. 基于你的系统安装 adb 驱动和命令 
+2. 在跑 Android 的开发板上，选择 `Settings` -> `USB`，然后勾选 `Connect to PC` 选项。
+3. 基于你的系统安装 adb 驱动和命令。
 
 ### Adb 在 Windows 下的安装
 
-1. 安装如下驱动 [Installing RK USB Driver](flash_emmc_windows.html#installing%20rk%20usb%20driver)
-2. 下载 [adb.zip](http://adbshell.com/upload/adb.zip)， 然后解压到 `C:\adb`
+1. 安装如下驱动 [Installing RK USB Driver](flash_emmc_windows.html#installing%20rk%20usb%20driver)。
+2. 下载 [adb.zip](http://adbshell.com/upload/adb.zip)， 然后解压到 `C:\adb`。
 
 打开 `cmd` 窗口然后运行:
 
@@ -20,7 +20,7 @@
 C:\adb\adb shell
 ```
 
-若成功就会进入 adb shell 
+若成功就会进入 adb shell 。
 
 ### Adb 在 Ubuntu 下的安装
 
@@ -62,37 +62,36 @@ adb shell
 
 ### 连接管理
 
-列出所有连接设备以及它们的串口号
+列出所有连接设备以及它们的序列号：
 ```
 adb devices
 ```
 
-若没有多连接设备，就必须用串口号来区分
+若没有多连接设备，就必须用序列号来区分：
 ```
 export ANDROID_SERIAL=<device serial number>
 adb shell ls
 ```
 
-也可以用 tcp/ip 网络 adb 连接
+也可以用 TCP/IP 网络连接 Adb ：
 ```
 adb tcpip 5555
 ```
 
-Adb 会在设备上重启并监听 5555 TCP 端口
-这个时候就可以拔出 USB 线了
+Adb 会在设备上重启并监听 5555 TCP 端口， 这个时候就可以拔出 USB 线了。
 
 如果设备的 IP 地址为 192.168.1.100，执行以下命令连接:
 ```
 adb connect 192.168.1.100:5555
 ```
 
-一旦连接，就可以执行 adb 命令了
+一旦连接，就可以执行 adb 命令了：
 ```
 adb shell ps
 adb logcat
 ```
 
-直到断开 adb 连接
+直到断开 adb 连接：
 ```
 adb disconnect 192.168.1.100:5555
 ```
@@ -117,7 +116,7 @@ adb logcat -s WifiStateMachine StateMachine
 
 #### 收集 Bug 报告
 
-`adb bugreport` 用来收集错误报告和一些系统信息
+`adb bugreport` 用来收集错误报告和一些系统信息。
 
 ```bash
 adb bugreport
@@ -159,9 +158,9 @@ adb install -r twitter.apk
 ```
 
 若安装失败，检查下常见原因:
- - `INSTALL_FAILED_ALREADY_EXISTS`: 尝试添加 `-r` 参数再次安装
- - `INSTALL_FAILED_SIGNATURE_ERROR`: APK 签名不一致，这可能是由于签名和调试版本的不同导致的。如果确认APK文件签名是正常的，可以使用 adb uninstall 命令卸载旧的应用程序，然后重新安装
- - `INSTALL_FAILED_INSUFFICIENT_STORAGE`: 存储空间不够
+ - `INSTALL_FAILED_ALREADY_EXISTS`: 尝试添加 `-r` 参数再次安装。
+ - `INSTALL_FAILED_SIGNATURE_ERROR`: APK 签名不一致，这可能是由于签名和调试版本的不同导致的。如果确认APK文件签名是正常的，可以使用 adb uninstall 命令卸载旧的应用程序，然后重新安装。
+ - `INSTALL_FAILED_INSUFFICIENT_STORAGE`: 存储空间不够。
 
 #### 卸载 Apk
 
@@ -182,5 +181,5 @@ package:/system/app/Bluetooth.apk=com.android.bluetooth
 ...
 ```
 
-pk文件路径和软件包名称用 `=` 分隔
+Apk文件路径和软件包名称用 `=` 分隔。
 
