@@ -2,13 +2,11 @@
 
 [ROC-RK3328-CC] 支持从以下存储设备启动：
  - SD 卡
- - eMMC 闪存
+ - eMMC
 
-如果你需要使用 SD 卡来启动开发板，并且所使用 Windows 操作系统主机，那可以直接参阅[《在Windows 下烧写固件到SD卡》](flash_sd_windows.html)。
+我们需要将系统固件烧写到 SD 卡或 eMMC 里，这样开发板上电后才能正常启动进入操作系统。
 
-使用官方的烧写工具 [SDCard Installer]，让烧写固件的工作变得简单，轻松点击几下便可以开始。
-
-如果你想要了解更多详情，或者更喜欢离线烧写固件，那么请继续往下看。
+[SDCard Installer] 是官方推荐的 SD 卡烧写工具，它基于 Etcher / Rock64 Installer 定制，实现了一站式的固件选择和烧录操作，让烧写工作变成轻松简单。
 
 ## 固件格式
 
@@ -16,31 +14,35 @@
  - 原始固件(raw firmware)
  - RK固件(Rockchip firmware)
  
-`原始固件(raw firmware)`，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。在 Linux 中，使用 `dd` 命令就能直接烧写这种类型的固件。。而在 Windows 中，可以使用图形化固件烧写工具，如 [Etcher] 或 [SDCard Installer]（后者基于 Rock64 Installer 订制）。
+`原始固件(raw firmware)`，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。`原始固件`一般烧写到 SD 卡中，但也可以烧写到 eMMC 中。烧写`原始固件`有许多工具可以选用：
+ - 烧写 SD 卡
+   + 命令行烧写工具： dd (Linux)
+   + 图形界面烧写工具：[Etcher] (Linux/Windows/Mac), [SDCard Installer] (Linux/Windows/Mac), WinDD (Windows)
+ - 烧写 eMMC
+   + 命令行烧写工具： update_tool (Linux)，rkdeveloptool (Linux)
+   + 图形界面烧写工具：android_tool (Windows)
 
-`RK 固件(Rockchip firmware)`，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 `update_tool`(Linux) 或 `android_tool`(Windows) 工具烧写到eMMC 闪存中。另外，RK 固件也可以使用 [SD_Firmware_Tool] 工具烧写到 SD 卡中。
+`RK 固件(Rockchip firmware)`，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 `update_tool`(Linux) 或 `android_tool`(Windows) 工具烧写到eMMC 闪存中。`RK固件`是 Rockchip 的传统固件打包格式，常用于 Android 设备上。另外，Android 的 RK 固件也可以使用 [SD_Firmware_Tool] 工具烧写到 SD 卡中。
 
-`RK 固件`和`原始固件`能够相互转换。这可能让人困惑，其实`RK固件`是 Rockchip 平台设备使用的传统格式固件，特别是在 Android 设备上，而`原始固件`用于 SD 卡的烧写更适合。
+原始固件的通用性更好，因此，为了简单起见，官方**不再提供 RK 固件下载**。
 
-编译 Android SDK会构建出 `boot.img`、`kernel.img`和`system.img`等映像文件，这些映像文件称为`分区映像文件`，用作烧写到存储设备对应的分区中。例如，`kernel.img` 会烧写到eMMC 或 SD 卡的 `kernel` 分区。
+另外，编译 Android SDK会构建出 `boot.img`、`kernel.img`和`system.img`等映像文件，这些映像文件称为`分区映像文件`，用于存储设备对应的分区的烧写中。例如，`kernel.img` 会被写到eMMC 或 SD 卡的 `kernel` 分区。
 
 ## 下载和烧写固件
 
-**RK固件** 下载列表:
- - Android 7.1.2 [💾](http://www.t-firefly.com/share/index/listpath/id/08cb58f6a5f8e4977275bd45a446764f.html)
- - Ubuntu 16.04 [💾](http://www.t-firefly.com/share/index/listpath/id/b99bb982578de0acf7261f96be2b8ba2.html)
+推荐使用 [SDCard Installer] 来下载和烧写固件到 SD 卡。
 
-`RK 固件`一般烧写到eMMC 中，根据操作系统的不同，参照相应指令即可：[Windows](flash_emmc_windows.html)， [Linux](flash_emmc_linux.html)。
+以下是手工下载和烧写固件的说明。首先到[这里](http://www.t-firefly.com/doc/download/page/id/34.html)下载`原始固件`。以下是支持的系统列表：
+ - Android 7.1.2
+ - Ubuntu 16.04
+ - Debian 9
+ - LibreELEC 9.0
 
-Android 的`RK固件`也可以烧写到 SD 卡中，使用[SD_Firmware_Tool](flash_sd_windows.html#flashing-rockchip-firmware) 即可。
+**注意**：下载页面提供的全是原始固件，官方**不再提供RK固件**。
 
-**原始固件** 下载列表：
- - Android 7.1.2 [💾](http://t-firefly.oss-cn-hangzhou.aliyuncs.com/product/RK3328/Firmware/Android/ROC-RK3328-CC_Android7.1.2_180411/ROC-RK3328-CC_Android7.1.2_180411.img.gz)
- - Ubuntu 16.04 [💾](http://download.t-firefly.com/product/RK3328/Firmware/Linux/ROC-RK3328-CC_Ubuntu16.04_Arch64_20180315/ROC-RK3328-CC_Ubuntu16.04_Arch64_20180315.zip)
- - Station OS [💾](http://download.t-firefly.com/product/Station%20OS/Station_OS_for_ROC-RK3328-CC_SDCard_Installer_v1.2.3.zip)
- - LibreELEC [💾](http://download.t-firefly.com/product/RK3328/Firmware/Linux/LibreELEC/ROC-RK3328-CC_LibreELEC9.0_180324/ROC-RK3328-CC_LibreELEC9.0_180324.zip)
-
-`原始固件` 一般烧写到 SD 卡中，根据操作系统的不同，参照相应指令即可：[Windows](flash_sd_windows.html)，[Linux](flash_sd_linux.html)。
+`原始固件`的烧写方法：
+- 烧写 SD 卡： [Windows](flash_sd_windows.html) / [Linux](flash_sd_linux.html)
+- 烧写 eMMC：[Windows](flash_emmc_windows.html) / [Linux](flash_emmc_linux.html)
 
 如果需要编译固件，请参考开发者指南。
 
