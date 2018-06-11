@@ -16,9 +16,9 @@ If you still can’t find what you need here, read [Serial Debug](debug.html) se
    - ARM Mali-450 MP2 Quad-Core GPU, supports OpenGL ES1.1/2.0, OpenVG1.1
    - DDR4 RAM (1GB/2GB/4GB)
  * Connectivity
-   - 2 x USB 2.0 Host，1 x USB 3.0 Host
+   - 2 x USB 2.0 Host, 1 x USB 3.0 Host
    - 10/100/1000Mb Ethernet
-   - 1 x IR Receiver Module，supports self-defined IR remote
+   - 1 x IR Receiver Module, supports self-defined IR remote
    - 40 pin expansion interface, contains GPIO, I2S, SPI, I2C, UART, PWM SPDIF, DEBUG 
  * Display
    - HDMI 2.0 ( Type-A ), supports maximum 4K@60Hz display

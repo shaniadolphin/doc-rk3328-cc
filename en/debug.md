@@ -41,7 +41,7 @@ Use the recommended driver from your USB serial adapter vendor. If not available
  - [PL2303](http://www.prolific.com.tw/US/ShowProduct.aspx?pcid=41)
  - [CP210X](http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx)
 
-> If PL2303 does not work under Win8，you can try to downgrade the driver to version 3.3.5.122 or before.
+> If PL2303 does not work under Win8, you can try to downgrade the driver to version 3.3.5.122 or before.
 
 After installing the driver, connect the adapter to the USB port. The OS will prompt that a new hardware is detected. When it finishes, you can find the new COM port in the device manager.
 

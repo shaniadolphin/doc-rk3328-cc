@@ -13,7 +13,7 @@ The steps of flashing raw firmware are:
     rkdeveloptool rd     # reset device to boot
     ```
 
-For more information about installation and usage of `rkdeveloptool`， check [here](#rkdeveloptool).
+For more information about installation and usage of `rkdeveloptool`, check [here](#rkdeveloptool).
 
 ## Flashing Rockchip Firmware
 
@@ -26,7 +26,7 @@ The steps of flashing Rockchip firmware are:
     upgrade_tool uf /path/to/rockchip/firmware
     ```
 
-For more information about installation and usage of `upgrade_tool`， check [here](#upgrade-tool).
+For more information about installation and usage of `upgrade_tool`, check [here](#upgrade-tool).
 
 ## Flashing Partition Image
 
@@ -50,7 +50,7 @@ If the original firmware format is raw, chances are that it is using the `GPT` p
 
 Partition offset can be found [here](#linux-partition-offset).
 
-For more information about installation and usage of `rkdeveloptool`， check [here](#rkdeveloptool).
+For more information about installation and usage of `rkdeveloptool`, check [here](#rkdeveloptool).
 
 **Rockchip Firmware**
 
@@ -74,7 +74,7 @@ Note:
 - `-b` is a predefined shortcut for `boot` partition. If no shortcuts are available, use partition name as `resource` instead.
 - You can customize kernel parameters and partition layout according to [Parameter file format](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf). Once the partition layout is changed, you must reflash the corresponding partitions.
 
-For more information about installation and usage of `upgrade_tool`， check [here](#upgrade-tool).
+For more information about installation and usage of `upgrade_tool`, check [here](#upgrade-tool).
 
 ## Flashing Tools
 
