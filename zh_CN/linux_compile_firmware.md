@@ -148,5 +148,5 @@ out
 
 烧写原始镜像格式的固件步骤，请参考 [《开始上手》](started.html) 一章。
 
-[ROC-RK3328-CC]: http://en.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC Official Website"
+[ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
 

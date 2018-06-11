@@ -197,5 +197,5 @@ Press CTRL-A Z for help on special keys
 * Hardware Flow Control 和 Software Flow Control 应该设置为 No
 * 结束设置之后， 按 `ESC` 键回到之前的菜单， 选择 "Save setup as dfl" 保存覆盖掉默认配置.
 
-[ROC-RK3328-CC]: http://en.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC Official Website"
+[ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
 

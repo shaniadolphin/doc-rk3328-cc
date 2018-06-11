@@ -26,6 +26,7 @@
 开发板背面：
 ![](img/hw_board_interface_bottom.png)
 
+<span id="community"/>
 # 社区
 Firefly：
 - [Forum](http://bbs.t-firefly.com/)

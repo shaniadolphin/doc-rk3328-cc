@@ -59,7 +59,7 @@ Android 的`RK固件`也可以烧写到 SD 卡中，使用[SD_Firmware_Tool](fla
  4. 插入 HDMI 线、USB 鼠标或键盘（可选）。
  5. 检查一切连接正常后，电源适配器上电。
 
-[ROC-RK3328-CC]: http://en.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC Official Website"
+[ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
 [SDCard Installer]: http://www.t-firefly.com/share/index/index/id/acd8e1e37176fba5bf61fb7bf4503998.html
 [Etcher]: https://etcher.io
 [SD_Firmware_Tool]: https://pan.baidu.com/s/1migPY1U#list/path=%2FPublic%2FDevBoard%2FROC-RK3328-CC%2FTools%2FSD_Firmware_Tool&parentPath=%2FPublic%2FDevBoard%2FROC-RK3328-CC
