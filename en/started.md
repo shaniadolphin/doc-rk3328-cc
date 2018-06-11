@@ -4,42 +4,43 @@
  - SD card
  - eMMC
 
-If you're using SD card to boot the board, and your host OS is Windows, visit straightly to 
-[Flashing Firmware to SD Card in Windows](flash_sd_windows.html). Using the official flashing tool [SDCard Installer] has made everything simple and easy with a few clicks.
+You need to flash the firmware to SD card or eMMC, so as to make the board bootable after power up. 
 
-If you would like to know more detail or prefer to offline firmware flashing, then go ahead.
+[SDCard Installer] is the officially recommended SD card flashing tool, which is based on Etcher / Rock64 Installer, and implements one-stop downloading and flashing of firmware file. It makes life easy.
 
 ## Firmware Format
 
-There are two firmware file formats used:
+There are two firmware file formats:
  - raw firmware
  - Rockchip firmware
  
-The `raw firmware`, is the on-disk format, which means that it should be copied to storage devices bit by bit. In Linux, you can use the `dd` command directly to flash this type of firmware. While in Windows, you can use graphics tool like [Etcher], or [SDCard Installer] which is derived from the Rock64 installer and [Etcher].
+The `raw firmware`, when flashing, is copied to the storage device bit by bit. It is the raw image of the storage device. `Raw firmware` is flashed to SD card in common cases, but it can also be flashed to eMMC. There are lots of flashing tools available:
+ - To flash to SD card:
+   + CLI: dd (Linux)
+   + GUI: Etcher (Linux/Windows/Mac), [SDCard Installer] (Linux/Windows/Mac), WinDD (Windows)
+ - To flash to eMMC:
+   + CLI: update_tool (Linux)，rkdeveloptool (Linux)
+   + GUI: android_tool (Windows)
 
-The `Rockchip firmware`, is the firmware file packed in Rockchip's proprietary format, which shall be flashed to eMMC using Rockchip's `update_tool` in Linux or `android_tool` in Windows. It can also be flashed into SD card using Rockchip's [SD_Firmware_Tool].
+The `Rockchip firmware`, is packed in Rockchip's proprietary format, which is flashed to eMMC via Rockchip's `update_tool` in Linux or `android_tool` in Windows. It is Rockchip's traditional packing format, commonly used in Rockchip Android firmware. The Rockchip Android firmware can also be flashed into SD card using [SD_Firmware_Tool].
 
-`Rockchip firmware` can be converted to `raw firmware`, and vice versa. That sounds confused at first. But `Rockchip firmware` is the traditional firmware format for all Rockchip devices, especially in case of Android OS. And `raw firmware` is more suitable and natural for SD card flashing.
-
-When you build the Android SDK, you'll get a list of `boot.img`, `kernel.img`, `system.img`, etc, which is called `partition image file` and will be flashed into the corresponding partition. For example, `kernel.img` is to be flashed to `kernel` partition of eMMC or SD card.
+Besides, when you build the Android SDK, you'll get a list of `boot.img`, `kernel.img`, `system.img`, etc, which is called `partition image file` and will be flashed to the corresponding partition. For example, `kernel.img` is to be flashed to `kernel` partition of eMMC or SD card.
 
 ## Download & Flash
 
-**Rockchip firmware** download list:
- - Android 7.1.2 [💾](http://www.t-firefly.com/share/index/listpath/id/08cb58f6a5f8e4977275bd45a446764f.html)
- - Ubuntu 16.04 [💾](http://www.t-firefly.com/share/index/listpath/id/b99bb982578de0acf7261f96be2b8ba2.html)
+It is strongly recommend to use [SDCard Installer] for easy downloading and flashing firmware to SD card with a few clicks.
 
-Rockchip firmware is meant to be flashed to eMMC, following instructions depending on your OS: [Windows](flash_emmc_windows.html), [Linux](flash_emmc_linux.html).
+Here come the instructions of manual downloading and flashing. First, check [this page](http://www.t-firefly.com/doc/download/page/id/34.html) to download the `raw firmware` you want. Here's the OS support list:
+ - Android 7.1.2
+ - Ubuntu 16.04
+ - Debian 9
+ - LibreELEC 9.0
 
-Android firmware in Rockchip format can also be flashed to SD card in Windows, using [SD_Firmware_Tool](flash_sd_windows.html#flashing-rockchip-firmware).
+**Warning**: The download page provides no `Rockchip firmware` any more.
 
-**Raw firmware** download list:
- - Android 7.1.2 [💾](http://t-firefly.oss-cn-hangzhou.aliyuncs.com/product/RK3328/Firmware/Android/ROC-RK3328-CC_Android7.1.2_180411/ROC-RK3328-CC_Android7.1.2_180411.img.gz)
- - Ubuntu 16.04 [💾](http://download.t-firefly.com/product/RK3328/Firmware/Linux/ROC-RK3328-CC_Ubuntu16.04_Arch64_20180315/ROC-RK3328-CC_Ubuntu16.04_Arch64_20180315.zip)
- - Station OS [💾](http://download.t-firefly.com/product/Station%20OS/Station_OS_for_ROC-RK3328-CC_SDCard_Installer_v1.2.3.zip)
- - LibreELEC [💾](http://download.t-firefly.com/product/RK3328/Firmware/Linux/LibreELEC/ROC-RK3328-CC_LibreELEC9.0_180324/ROC-RK3328-CC_LibreELEC9.0_180324.zip)
-
-Raw firmware is meant to be flashed to SD card, following instructions depending on your OS: [Windows](flash_sd_windows.html), [Linux](flash_sd_linux.html).
+To flash `raw firmware`, follow the steps below:
+- To flash to SD card: [Windows](flash_sd_windows.html) / [Linux](flash_sd_linux.html)
+- To flash to eMMC: [Windows](flash_emmc_windows.html) / [Linux](flash_emmc_linux.html)
 
 If you want to build your own firmware, please check the Developer's Guide.
 
