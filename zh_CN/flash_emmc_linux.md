@@ -28,16 +28,16 @@
 
 更多关于 `upgrade_tool` 的安装和使用，请参阅[此处](#upgrade-tool)。
 
-## 烧写分区镜像
+## 烧写分区映像
 
-可以将单独的分区镜像写入 eMMC。取决原有的固件格式，指令会有所不同。
+可以将单独的分区映像写入 eMMC。取决原有的固件格式，指令会有所不同。
 
 **原始固件**
 
 如果初始固件格式是原始的，那么很可能使用了 `GPT` 分区方案。每个分区的预定义偏移量和大小可以在 SDK 里的 `build/partitions.sh` 中找到：
 
 1. 强制设备进入 [Maskrom 模式]
-2. 使用 `rkdeveloptool` 烧写分区镜像：
+2. 使用 `rkdeveloptool` 烧写分区映像：
     ```
     rkdeveloptool db         out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
     rkdeveloptool wl 0x40    out/u-boot/idbloader.img
@@ -54,10 +54,10 @@
 
 **RK 固件**
 
-如果初始固件的格式是 RK 格式， 它使用 `parameter` 文件作为分区方案，这样就可直接使用分区名称来烧写分区镜像：
+如果初始固件的格式是 RK 格式， 它使用 `parameter` 文件作为分区方案，这样就可直接使用分区名称来烧写分区映像：
 
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式] 。
-2. 使用 `upgrade_tool` 烧写分区镜像：
+2. 使用 `upgrade_tool` 烧写分区映像：
     ```
     upgrade_tool di -b /path/to/boot.img
     upgrade_tool di -k /path/to/kernel.img
@@ -97,7 +97,7 @@
 
 **注意**： 根据[这里](#udev)的说明去添加 `udev` 规则， 这是为了普通用户也有权限烧写 Rockchip 设备。如果跳过这步，则烧写命令需要在前面加 `sudo ` 才执行。
 
-烧写分区镜像：
+烧写分区映像：
 
     rkdeveloptool db           out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
     rkdeveloptool wl 0x40      out/u-boot/idbloader.img
@@ -117,7 +117,7 @@
 
 ### upgrade_tool
 
-`upgrade_tool` 是由 Rockchip 提供的闭源的命令行工具， 支持 RK 固件和分区镜像的烧写。
+`upgrade_tool` 是由 Rockchip 提供的闭源的命令行工具， 支持 RK 固件和分区映像的烧写。
 
 下载 [Linux_Upgrade_Tool](https://gitlab.com/TeeFirefly/RK3328-Nougat/blob/roc-rk3328-cc/RKTools/linux/Linux_Upgrade_Tool/Linux_Upgrade_Tool_v1.24.zip)， 并安装到 Linux 系统上：
 
@@ -133,7 +133,7 @@
 
     upgrade_tool uf update.img
 
-烧写分区镜像：
+烧写分区映像：
 
     upgrade_tool di -b /path/to/boot.img
     upgrade_tool di -k /path/to/kernel.img
@@ -182,7 +182,7 @@ LABEL="end_rules"
 <span id="linux-partition-offset"/>
 ### Linux 分区偏移
 
-分区镜像的偏移量可以通过以下命令获得（假设位于 Firefly Linux SDK 的目录中）：
+分区映像的偏移量可以通过以下命令获得（假设位于 Firefly Linux SDK 的目录中）：
 
     (. build/partitions.sh ; set | grep _START | \
     while read line; do start=${line%=*}; \

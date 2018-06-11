@@ -1,6 +1,6 @@
 # Windows 下的 eMMC 烧写
 
-`AndroidTool` 是 Windows 下用来烧写固件和分区镜像到 eMMC 的工具。
+`AndroidTool` 是 Windows 下用来烧写固件和分区映像到 eMMC 的工具。
 
 使用 `AndroidTool` 之前， 应先安装 `Rockusb 驱动`。
 
@@ -52,9 +52,9 @@
 5. 固件版本号、loader 版本号和芯片信息会从固件中读取并显示。
 6. 点击 "Upgrade" 按钮烧录。
 
-## 烧写分区镜像
+## 烧写分区映像
 
-安装 `Rockusb 驱动` and `AndroidTool` 后， 烧写分区镜像的步骤为：
+安装 `Rockusb 驱动` and `AndroidTool` 后， 烧写分区映像的步骤为：
 
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式]。
 2. 运行 `AndroidTool`。
@@ -62,17 +62,17 @@
 4. 保持表格第一行不变。
 5. 通过从右键单击弹出式菜单中选择 "Delete Item" ，删除所有其他未使用的行。
    ![](img/androidtool_del.png)
-6. 通过从右键单击弹出菜单中选择 "Add Item" 将分区镜像添加到闪存：
+6. 通过从右键单击弹出菜单中选择 "Add Item" 将分区映像添加到闪存：
 
 	* 选中第一个单元格上的复选框。
 	* 填入 `parameter.txt` 中该分区的起始扇区作为烧写地址（如果是 [Maskrom 模式] 则须再加上 `0x2000`）。
-	* 单击右侧空白单元格以便定位到对应的分区镜像文件。
+	* 单击右侧空白单元格以便定位到对应的分区映像文件。
 	![](img/androidtool_add.png)
 7. 点击 "Run" 按钮烧录。
 
 **注意**：
 
-- 您可以通过重复步骤 6 将多个分区镜像烧写到闪存。
+- 您可以通过重复步骤 6 将多个分区映像烧写到闪存。
 - 通过取消选中地址单元格前面的复选框，可以跳过分区烧写。
 - 在 [Maskrom 模式] 中， `parameter.txt` 中分区的起始扇区必须再加上 `0x2000` 作为烧写地址。
 

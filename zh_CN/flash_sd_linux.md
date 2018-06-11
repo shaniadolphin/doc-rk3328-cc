@@ -26,7 +26,7 @@
 
 在 Linux 中没有将 RK固件烧写到 SD 卡的工具。
 
-但可以解包 Rockchip 格式的固件，并将所有分区镜像重新打包成原始格式固件，然后使用上一节中的方法继续去烧写。
+但可以解包 Rockchip 格式的固件，并将所有分区映像重新打包成原始格式固件，然后使用上一节中的方法继续去烧写。
 
 [SDCard Installer]: http://www.t-firefly.com/share/index/index/id/acd8e1e37176fba5bf61fb7bf4503998.html
 
