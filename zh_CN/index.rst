@@ -13,16 +13,8 @@ ROC-RK3328-CC 使用手册
 
    intro
    started
-   debug
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :caption: 烧写SD 卡
-
    flash_sd
-   flash_sd_windows
-   flash_sd_linux
+   debug
 
 .. toctree::
    :glob:
