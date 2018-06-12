@@ -1,6 +1,4 @@
-# 介绍
-
-## 欢迎
+# 简介
 
 恭喜你入手 [ROC-RK3328-CC] 开发板！
 
@@ -11,7 +9,9 @@
 ## 产品规格
 
 
-[ROC-RK3328-CC]，是 Firefly 荣誉出品的第一块信用卡大小的高性为价比开源主板，现将功能描述如下：
+[ROC-RK3328-CC]，是 Firefly 荣誉出品的第一块信用卡大小、性能强、功耗小的开源主板。
+
+主要功能：
  * 核心
    - Quad-Core ARM® Cortex-A53 64-bit 处理器，高达 1.5GHz 的主频
    - ARM Mali-450 MP2 Quad-Core GPU，支持 OpenGL ES1.1/2.0，OpenVG1.1
@@ -38,7 +38,7 @@
 
 (请参考完整的[《完整规格说明》](http://www.t-firefly.com/product/rocrk3328cc.html#spec))
 
-这款令人难以置信的超小型主板，凭借其低功耗和高性能，能够安静流畅地运行 Android 7.1 或 Ubuntu 16.04 。
+这款令人难以置信的超小型主板，凭借其低功耗和高性能，能够安静流畅地运行 Android 7.1 或 Ubuntu 16.04 系统。
 
 ## 包装配件
 
