@@ -49,9 +49,9 @@
 
 Windows 中有很多串口终端工具，例如 putty 和 SecureCRT。以下介绍Putty这款流行的开源软件的使用。
 
-从[这里](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)下载 putty，推荐 `putty.zip`。
+> [Putty 下载地址](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
-解压并运行 `PUTTY.exe`：
+下载 `putty.zip`，解压并运行 `PUTTY.exe`：
 
 1. 选择 "Connection type" 为 "Serial"。
 2. 将 "Serial line" 修改为在设备管理器中找到的 COM 端口。

@@ -20,15 +20,6 @@ ROC-RK3328-CC 使用手册
 .. toctree::
    :glob:
    :maxdepth: 2
-   :caption: 烧写 eMMC
-
-   bootmode
-   flash_emmc_linux
-   flash_emmc_windows
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
    :caption: Linux 开发者指南
 
    linux_compile_firmware

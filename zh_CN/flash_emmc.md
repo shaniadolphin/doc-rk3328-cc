@@ -98,7 +98,7 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 这表示驱动安装成功。
 
-## 安装 AndroidTool
+### 安装 AndroidTool
 
 > [下载地址](http://www.t-firefly.com/share/index/listpath/id/acd8e1e37176fba5bf61fb7bf4503998.html)
  
@@ -110,7 +110,7 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 若设备处于 [Maskrom 模式]，状态行将显示 "Found One MASKROM Device"。
 
-## 烧写原始固件
+### 烧写原始固件
 
 [原始固件]需要从 eMMC 的偏移地址为 0 的位置开始烧写。但在 [Rockusb 模式] 下无法做到这点，因为所有 LBA 写入操作会偏移 0x2000 个扇区（即 LBA0 对应于存储设备上第 0x2000 个扇区）。因此，开发板必须强制进入 [Maskrom 模式] 才能烧写[原始固件]。
 
@@ -125,7 +125,7 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 ![](img/androidtool_flash_image.png)
 
-## 烧写 RK 固件
+### 烧写 RK 固件
 
 使用 [AndroidTool] 烧写 [RK 固件]的步骤如下：
 
@@ -136,7 +136,7 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 5. 固件版本号、loader 版本号和芯片信息会从固件中读取并显示。
 6. 点击 "Upgrade" 按钮烧录。
 
-## 烧写分区映像
+### 烧写分区映像
 
  使用 [AndroidTool] 烧写[分区映像]的步骤如下：
 

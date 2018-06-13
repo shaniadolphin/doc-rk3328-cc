@@ -139,14 +139,15 @@ out
 2 directories, 8 files
 ```
 
-创建原始固件:
+打包[原始固件]:
 ```
 ./build/mk-image.sh -c rk3328 -t system -r out/rootfs.img
 ```
 
 这条命令根据[《存储映射》](http://opensource.rock-chips.com/wiki_Partitions#Default_storage_map)所描述的布局，将分区映像文件写到指定位置，最终打包成 `out/system.img`，
 
-烧写原始映像格式的固件步骤，请参考 [《开始上手》](started.html) 一章。
+烧写[原始固件]的步骤，请参考 [《开始上手》](started.html) 一章。
 
 [ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
-
+[原始固件]: started.html#raw_firmware_format
+[RK 固件]: started.html#rockchip_firmware_format

@@ -18,8 +18,8 @@
  
 <span id="raw_firmware_format"></span>
 
-`原始固件(raw firmware)`，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。`原始固件`一般烧写到 SD 卡中，但也可以烧写到 eMMC 中。
-烧写`原始固件`有许多工具可以选用：
+[原始固件]，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。[原始固件]一般烧写到 SD 卡中，但也可以烧写到 eMMC 中。
+烧写[原始固件]有许多工具可以选用：
 
 - 烧写 SD 卡
   + 图形界面烧写工具：
@@ -36,19 +36,19 @@
 
 <span id="rockchip_firmware_format"></span>
 
-`RK 固件(Rockchip firmware)`，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 [upgrade_tool] (Linux) 或 [AndroidTool] (Windows) 工具烧写到eMMC 闪存中。`RK固件`是 Rockchip 的传统固件打包格式，常用于 Android 设备上。另外，Android 的 RK 固件也可以使用 [SD_Firmware_Tool] 工具烧写到 SD 卡中。
+[RK 固件]，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 [upgrade_tool] (Linux) 或 [AndroidTool] (Windows) 工具烧写到eMMC 闪存中。[RK 固件]是 Rockchip 的传统固件打包格式，常用于 Android 设备上。另外，Android 的 [RK 固件]也可以使用 [SD  Firmware Tool] 工具烧写到 SD 卡中。
 
-原始固件的通用性更好，因此，为了简单起见，官方**不再提供 RK 固件下载**。
+[原始固件]的通用性更好，因此，为了简单起见，官方**不再提供** [RK 固件]下载。
 
 <span id="partition_image"></span>
 
-另外，编译 Android SDK会构建出 `boot.img`、`kernel.img`和`system.img`等映像文件，这些映像文件称为`分区映像文件`，用于存储设备对应的分区的烧写中。例如，`kernel.img` 会被写到eMMC 或 SD 卡的 `kernel` 分区。
+[分区映像]，是分区的映像数据，用于存储设备对应分区的烧写。例如，编译 Android SDK会构建出 `boot.img`、`kernel.img`和`system.img`等[分区映像]文件，`kernel.img` 会被写到eMMC 或 SD 卡的 "kernel" 分区。
 
 ## 下载和烧写固件
 
 推荐使用 [SDCard Installer] 来烧写固件到 SD 卡。
 
-如果使用 [SDCard Installer] 以外的工具，需要手工到[这里](http://www.t-firefly.com/doc/download/page/id/34.html)下载固件。
+如果使用 [SDCard Installer] 以外的工具，需要到[固件下载页面](http://www.t-firefly.com/doc/download/page/id/34.html)去下载固件，然后再选择工具去烧写。
 
 以下是支持的系统列表：
  - Android 7.1.2
@@ -56,13 +56,21 @@
  - Debian 9
  - LibreELEC 9.0
 
-**注意**：下载页面提供的全是原始固件，官方**不再提供RK固件**。
+**注意**：下载页面提供的全是[原始固件]，官方**不再提供**[RK 固件]。
 
-固件的烧写方法：
-- [烧写 SD 卡](flash_sd.html)
-- [烧写 eMMC](flash_emmc.html)
-
-如果需要编译固件，请参考开发者指南。
+根据所使用的操作系统来选择合适的工具去烧写[原始固件]。
+- 烧写 SD 卡
+  + 图形界面烧写工具：
+    * [SDCard Installer] (Linux/Windows/Mac)
+    * [Etcher] (Linux/Windows/Mac)
+  + 命令行烧写工具
+    * [dd] (Linux)
+- 烧写 eMMC
+  + 图形界面烧写工具：
+    * [AndroidTool] (Windows)
+  + 命令行烧写工具：
+    * [upgrade_tool] (Linux)
+    * [rkdeveloptool] (Linux)
 
 ## 开发板上电启动
 
@@ -80,6 +88,9 @@
  5. 检查一切连接正常后，电源适配器上电。
 
 [ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
+[原始固件]: started.html#raw_firmware_format
+[RK 固件]: started.html#rockchip_firmware_format
+[分区映像]: started.html#partition_image
 [SDCard Installer]: flash_sd.html#sdcard-installer
 [Etcher]: flash_sd.html#etcher
 [dd]: flash_sd.html#dd
