@@ -94,16 +94,16 @@
 首先，到[SD Firmware Tool 下载页面](https://pan.baidu.com/s/1migPY1U#list/path=%2FPublic%2FDevBoard%2FROC-RK3328-CC%2FTools%2FSD_Firmware_Tool&parentPath=%2FPublic%2FDevBoard%2FROC-RK3328-CC)去下载 `SD_Firmware_Tool`，并解压。
 
 运行 `SD_Firmware_Tool.exe`:
-![](img/started_sdfirmwaretool.png)
+![](img/sdfirmwaretool.zh_CN.png)
 
 1. 插入 SD 卡。
 2. 从组合框中选择 SD 卡对应的设备。
-3. 勾选 "SD Boot" 选项。
-4. 点击 "Firmware" 按钮，在文件对话框中选择固件。
-5. 点击 "Create" 按钮。
+3. 勾选 "SD启动" 选项。
+4. 点击 "选择固件" 按钮，在文件对话框中选择固件。
+5. 点击 "开始创建" 按钮。
 6. 然后会显示警告对话框，选择 "是" 来确保选择了正确的SD卡设备。
 7. 等待操作完成，直到提示成功对话框出现：
-    ![](img/started_sdfirmwaretool_done.png)
+    ![](img/sdfirmwaretool_done.zh_CN.png)
 8. 拔出 SD 卡。
 
 [SDCard Installer]: flash_sd.html#sdcard-installer

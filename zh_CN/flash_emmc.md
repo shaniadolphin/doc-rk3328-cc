@@ -100,15 +100,15 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 ### 安装 AndroidTool
 
-> [下载地址](http://www.t-firefly.com/share/index/listpath/id/acd8e1e37176fba5bf61fb7bf4503998.html)
+> [AndroidTool 下载地址](http://www.t-firefly.com/share/index/listpath/id/acd8e1e37176fba5bf61fb7bf4503998.html)
  
 解压后运行里面的 `AndroidTool.exe`：
 
-![](img/androidtool.png)
+![](img/androidtool.zh_CN.png)
 
-若设备处于 [Rockusb 模式]，状态行将显示 "Found One LOADER Device"。
+若设备处于 [Rockusb 模式]，状态行将显示 "发现一个LOADER设备"。
 
-若设备处于 [Maskrom 模式]，状态行将显示 "Found One MASKROM Device"。
+若设备处于 [Maskrom 模式]，状态行将显示 "发现一个MASKROM设备"。
 
 ### 烧写原始固件
 
@@ -118,12 +118,12 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 1. 强制设备进入 [Maskrom 模式]。
 2. 运行 [AndroidTool]。
-3. 打开 “Download Image” 制表页。
-4. 保持表格的第一行不变， 使用默认的 “MiniLoader” 文件。
+3. 打开 “下载镜像” 制表页。
+4. 保持表格的第一行不变， 使用默认的 “Loader” 文件。
 5. 点击第二行右侧的空白单元格，在弹出的文件对话框里打开[原始固件]文件。
-6. 点击 "Run" 按钮开始烧写。
+6. 点击 "执行" 按钮开始烧写。
 
-![](img/androidtool_flash_image.png)
+![](img/androidtool_flash_image.zh_CN.png)
 
 ### 烧写 RK 固件
 
@@ -131,10 +131,10 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式]。
 2. 运行 [AndroidTool]。
-3. 打开 "Upgrade Firmware" 制表页。
-4. 点击 "Firmware" 按钮， 这会弹出一个文件对话框来打开原始固件文件。
+3. 打开 "升级固件" 制表页。
+4. 点击 "固件" 按钮， 在弹出的文件对话框里打开[RK 固件]文件。
 5. 固件版本号、loader 版本号和芯片信息会从固件中读取并显示。
-6. 点击 "Upgrade" 按钮烧录。
+6. 点击 "升级" 按钮烧录。
 
 ### 烧写分区映像
 
@@ -142,16 +142,16 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式]。
 2. 运行 `AndroidTool`。
-3. 打开 `Download Image` 制表页。
+3. 打开 "下载镜像" 制表页。
 4. 保持表格第一行不变。
-5. 鼠标右键点击其它行，在弹出菜单中选择 "Delete Item" ，重复直至删除第一行除外的所有行。
-   ![](img/androidtool_del.png)
-6. 鼠标右键点击表格，在弹出菜单中选择 "Add Item" 以便添加[分区映像]：
+5. 鼠标右键点击其它行，在弹出菜单中选择 "删除项" ，重复直至删除第一行除外的所有行。
+   ![](img/androidtool_del.zh_CN.png)
+6. 鼠标右键点击表格，在弹出菜单中选择 "添加项" 以便添加[分区映像]：
 	* 选中第一个单元格上的复选框。
 	* 填入 `parameter.txt` 中该分区的起始扇区作为烧写地址（如果是 [Maskrom 模式] 则须再加上 `0x2000`）。
-	* 单击右侧空白单元格以便打开本地对应的[分区映像]文件。
-	![](img/androidtool_add.png)
-7. 点击 "Run" 按钮烧录。
+	* 单击右侧空白单元格，在弹出的文件对话框里打开对应的[分区映像]文件。
+	![](img/androidtool_add.zh_CN.png)
+1. 点击 "执行" 按钮烧录。
 
 **注意**：
 
