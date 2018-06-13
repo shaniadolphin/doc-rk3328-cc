@@ -1,6 +1,6 @@
 # 烧写 SD 卡
 
-下面我们将介绍如何烧写固件到 SD 卡。如果没有特别说明，以下的固件都是指`原始固件(raw firmware)`。关于固件的类型说明可以看[这里](started.html#firmware_format)。
+下面我们将介绍如何烧写固件到 SD 卡。如果没有特别说明，以下的固件都是指[原始固件]。关于固件的类型说明可以看[这里](started.html#firmware_format)。
 
 推荐使用 [SDCard Installer] 来烧写固件到 SD 卡。
 
@@ -12,7 +12,7 @@
  - Debian 9
  - LibreELEC 9.0
 
-**注意**：下载页面提供的全是原始固件，官方**不再提供RK固件**。
+**注意**：下载页面提供的全是[原始固件]，官方**不再提供**[RK固件]。
 
 ## 准备 SD 卡
 
@@ -36,9 +36,9 @@
   + 命令行烧写工具
     * [dd] (Linux)
 
-### SDCard Installer
+## SDCard Installer
 
-烧写原始固件，最轻松的方式就是使用官方的 [SDCard Installer]，它基于 Etcher / Rock64 Installer 定制，实现了一站式的固件选择和烧录操作，让烧写工作变成轻松简单。
+烧写[原始固件]，最轻松的方式就是使用官方的 [SDCard Installer]，它基于 Etcher / Rock64 Installer 定制，实现了一站式的固件选择和烧录操作，让烧写工作变成轻松简单。
 
 [SDCard Installer] 节省了搜索开发板可用固件的时间。你只需要选择开发板、操作系统，插入 SD 卡，点击烧写按钮即可完成整个写卡工作，实在简单方便。
 
@@ -61,13 +61,13 @@
     ![](img/started_sdcard-installer_umount_fail.png)
 - 在线下载的固件会缓存到本地目录，下次烧写时不用重新下载。缓存目录可以点击左下角的设置按钮，在 "Download Location:" 处设置。
  
-### Etcher
+## Etcher
 
 [Etcher] 与 [SDCard Installer] 相比，少了固件选择的集成，但代码比较新。如果 [SDCard Installer] 在烧写 SD 卡中出错，或有什么问题，可以尝试使用 [Etcher] 去烧写，此时直接使用 [SDCard Installer] 缓存目录里的固件即可。
 
 [Etcher] 可以到其[官网](https://etcher.io)去下载，安装和使用与 [SDCard Installer] 比较类似，这里就不再重复。
 
-### dd
+## dd
 
 [dd] 是 Linux 下常用的命令行工具。
 
@@ -87,11 +87,11 @@
 然后利用管道操作显示烧写进度：
 > pv -tpreb /path/to/your/raw/firmware | sudo dd of=/dev/mmcblk0 conv=notrunc
 
-### SD Firmware Tool
+## SD Firmware Tool
 
-**注意**：以下介绍的是如何将**RK固件**烧写到 SD 卡。
+**注意**：以下介绍的是如何将[RK固件]烧写到 SD 卡。
 
-首先，到[这里](https://pan.baidu.com/s/1migPY1U#list/path=%2FPublic%2FDevBoard%2FROC-RK3328-CC%2FTools%2FSD_Firmware_Tool&parentPath=%2FPublic%2FDevBoard%2FROC-RK3328-CC)下载 [SD_Firmware_Tool]，并解压。
+首先，到[这里](https://pan.baidu.com/s/1migPY1U#list/path=%2FPublic%2FDevBoard%2FROC-RK3328-CC%2FTools%2FSD_Firmware_Tool&parentPath=%2FPublic%2FDevBoard%2FROC-RK3328-CC)下载 `SD_Firmware_Tool`，并解压。
 
 运行 `SD_Firmware_Tool.exe`:
 ![](img/started_sdfirmwaretool.png)
@@ -110,3 +110,5 @@
 [Etcher]: flash_sd.html#etcher
 [dd]: flash_sd.html#dd
 [SD Firmware Tool]: flash_sd.html#sd-firmware-tool
+[原始固件]: started.html#raw_firmware_format
+[RK 固件]: started.html#rockchip_firmware_format

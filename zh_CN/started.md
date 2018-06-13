@@ -9,12 +9,15 @@
 [SDCard Installer] 是官方推荐的 SD 卡烧写工具，它基于 Etcher / Rock64 Installer 定制，实现了一站式的固件选择和烧录操作，让烧写工作变成轻松简单。
 
 <span id="firmware_format"></span>
+
 ## 固件格式
 
 固件有两种格式：
  - 原始固件(raw firmware)
  - RK固件(Rockchip firmware)
  
+<span id="raw_firmware_format"></span>
+
 `原始固件(raw firmware)`，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。`原始固件`一般烧写到 SD 卡中，但也可以烧写到 eMMC 中。
 烧写`原始固件`有许多工具可以选用：
 - 烧写 SD 卡
@@ -29,6 +32,8 @@
     * rkdeveloptool (Linux)
   + 图形界面烧写工具：
     * android_tool (Windows)
+
+<span id="rockchip_firmware_format"></span>
 
 `RK 固件(Rockchip firmware)`，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 `update_tool`(Linux) 或 `android_tool`(Windows) 工具烧写到eMMC 闪存中。`RK固件`是 Rockchip 的传统固件打包格式，常用于 Android 设备上。另外，Android 的 RK 固件也可以使用 [SD_Firmware_Tool] 工具烧写到 SD 卡中。
 
