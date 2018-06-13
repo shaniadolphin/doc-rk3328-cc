@@ -20,6 +20,7 @@
 
 `原始固件(raw firmware)`，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。`原始固件`一般烧写到 SD 卡中，但也可以烧写到 eMMC 中。
 烧写`原始固件`有许多工具可以选用：
+
 - 烧写 SD 卡
   + 图形界面烧写工具：
     * [SDCard Installer] (Linux/Windows/Mac)
@@ -27,17 +28,19 @@
   + 命令行烧写工具
     * [dd] (Linux)
 - 烧写 eMMC
-  + 命令行烧写工具：
-    * update_tool (Linux)
-    * rkdeveloptool (Linux)
   + 图形界面烧写工具：
-    * android_tool (Windows)
+    * [AndroidTool] (Windows)
+  + 命令行烧写工具：
+    * [upgrade_tool] (Linux)
+    * [rkdeveloptool] (Linux)
 
 <span id="rockchip_firmware_format"></span>
 
-`RK 固件(Rockchip firmware)`，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 `update_tool`(Linux) 或 `android_tool`(Windows) 工具烧写到eMMC 闪存中。`RK固件`是 Rockchip 的传统固件打包格式，常用于 Android 设备上。另外，Android 的 RK 固件也可以使用 [SD_Firmware_Tool] 工具烧写到 SD 卡中。
+`RK 固件(Rockchip firmware)`，是以 Rockchip专有格式打包的固件，使用 Rockchip 提供的 [upgrade_tool] (Linux) 或 [AndroidTool] (Windows) 工具烧写到eMMC 闪存中。`RK固件`是 Rockchip 的传统固件打包格式，常用于 Android 设备上。另外，Android 的 RK 固件也可以使用 [SD_Firmware_Tool] 工具烧写到 SD 卡中。
 
 原始固件的通用性更好，因此，为了简单起见，官方**不再提供 RK 固件下载**。
+
+<span id="partition_image"></span>
 
 另外，编译 Android SDK会构建出 `boot.img`、`kernel.img`和`system.img`等映像文件，这些映像文件称为`分区映像文件`，用于存储设备对应的分区的烧写中。例如，`kernel.img` 会被写到eMMC 或 SD 卡的 `kernel` 分区。
 
@@ -81,3 +84,6 @@
 [Etcher]: flash_sd.html#etcher
 [dd]: flash_sd.html#dd
 [SD Firmware Tool]: flash_sd.html#sd-firmware-tool
+[AndroidTool]: flash_emmc.html#androidtool
+[upgrade_tool]: flash_emmc.html#upgrade-tool
+[rkdeveloptool]: flash_emmc.html#rkdeveloptool

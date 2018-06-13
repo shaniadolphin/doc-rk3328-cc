@@ -14,6 +14,7 @@ ROC-RK3328-CC 使用手册
    intro
    started
    flash_sd
+   flash_emmc
    debug
 
 .. toctree::
