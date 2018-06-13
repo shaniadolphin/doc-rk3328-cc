@@ -12,7 +12,7 @@
  - Debian 9
  - LibreELEC 9.0
 
-**注意**：下载页面提供的全是[原始固件]，官方**不再提供**[RK固件]。
+**注意**：下载页面提供的全是[原始固件]，官方**不再提供**[RK 固件]。
 
 ## 准备 SD 卡
 
@@ -89,7 +89,7 @@
 
 ## SD Firmware Tool
 
-**注意**：以下介绍的是如何将[RK固件]烧写到 SD 卡。
+**注意**：以下介绍的是如何将[RK 固件]烧写到 SD 卡。
 
 首先，到[SD Firmware Tool 下载页面](https://pan.baidu.com/s/1migPY1U#list/path=%2FPublic%2FDevBoard%2FROC-RK3328-CC%2FTools%2FSD_Firmware_Tool&parentPath=%2FPublic%2FDevBoard%2FROC-RK3328-CC)去下载 `SD_Firmware_Tool`，并解压。
 
