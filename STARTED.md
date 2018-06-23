@@ -65,7 +65,7 @@ Markdown Preprocessor is supported. See the [demo](en/share/mdpp-demo.mdpp) for 
 First, you need to create the sphinx builder environment,
 which resides at `~/sphinx-markdown` .
 
-```bash
+``` shell
 sudo pip3 install virtualenv
 virtualenv --python=python3 ~/sphinx-markdown
 source ~/sphinx-markdown/bin/activate

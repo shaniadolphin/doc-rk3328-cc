@@ -13,25 +13,9 @@ Welcome to ROC-RK3328-CC Manual
 
    intro
    started
-   debug
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :caption: Flashing to SD Card
-
    flash_sd
-   flash_sd_windows
-   flash_sd_linux
-
-.. toctree::
-   :glob:
-   :maxdepth: 2
-   :caption: Flashing to eMMC
-
-   bootmode
-   flash_emmc_linux
-   flash_emmc_windows
+   flash_emmc
+   debug
 
 .. toctree::
    :glob:

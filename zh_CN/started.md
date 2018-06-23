@@ -1,8 +1,9 @@
 # 上手指南
 
 [ROC-RK3328-CC] 支持从以下存储设备启动：
- - SD 卡
- - eMMC
+
+- SD 卡
+- eMMC
 
 我们需要将系统固件烧写到 SD 卡或 eMMC 里，这样开发板上电后才能正常启动进入操作系统。
 
@@ -13,26 +14,27 @@
 ## 固件格式
 
 固件有两种格式：
- - 原始固件(raw firmware)
- - RK固件(Rockchip firmware)
- 
+
+- 原始固件(raw firmware)
+- RK固件(Rockchip firmware)
+
 <span id="raw_firmware_format"></span>
 
 [原始固件]，是一种能以逐位复制的方式烧写到存储设备的固件，是存储设备的原始映像。[原始固件]一般烧写到 SD 卡中，但也可以烧写到 eMMC 中。
 烧写[原始固件]有许多工具可以选用：
 
 - 烧写 SD 卡
-  + 图形界面烧写工具：
-    * [SDCard Installer] (Linux/Windows/Mac)
-    * [Etcher] (Linux/Windows/Mac)
-  + 命令行烧写工具
-    * [dd] (Linux)
+    + 图形界面烧写工具：
+        * [SDCard Installer] (Linux/Windows/Mac)
+        * [Etcher] (Linux/Windows/Mac)
+    + 命令行烧写工具
+        * [dd] (Linux)
 - 烧写 eMMC
-  + 图形界面烧写工具：
-    * [AndroidTool] (Windows)
-  + 命令行烧写工具：
-    * [upgrade_tool] (Linux)
-    * [rkdeveloptool] (Linux)
+    + 图形界面烧写工具：
+        * [AndroidTool] (Windows)
+    + 命令行烧写工具：
+        * [upgrade_tool] (Linux)
+        * [rkdeveloptool] (Linux)
 
 <span id="rockchip_firmware_format"></span>
 
@@ -51,41 +53,44 @@
 如果使用 [SDCard Installer] 以外的工具，需要到[固件下载页面](http://www.t-firefly.com/doc/download/page/id/34.html)去下载固件，然后再选择工具去烧写。
 
 以下是支持的系统列表：
- - Android 7.1.2
- - Ubuntu 16.04
- - Debian 9
- - LibreELEC 9.0
+
+- Android 7.1.2
+- Ubuntu 16.04
+- Debian 9
+- LibreELEC 9.0
 
 **注意**：下载页面提供的全是[原始固件]，官方**不再提供**[RK 固件]。
 
-根据所使用的操作系统来选择合适的工具去烧写[原始固件]。
+根据所使用的操作系统来选择合适的工具去烧写[原始固件]：
+
 - 烧写 SD 卡
-  + 图形界面烧写工具：
-    * [SDCard Installer] (Linux/Windows/Mac)
-    * [Etcher] (Linux/Windows/Mac)
-  + 命令行烧写工具
-    * [dd] (Linux)
+    + 图形界面烧写工具：
+        * [SDCard Installer] (Linux/Windows/Mac)
+        * [Etcher] (Linux/Windows/Mac)
+    + 命令行烧写工具
+        * [dd] (Linux)
 - 烧写 eMMC
-  + 图形界面烧写工具：
-    * [AndroidTool] (Windows)
-  + 命令行烧写工具：
-    * [upgrade_tool] (Linux)
-    * [rkdeveloptool] (Linux)
+    + 图形界面烧写工具：
+        * [AndroidTool] (Windows)
+    + 命令行烧写工具：
+        * [upgrade_tool] (Linux)
+        * [rkdeveloptool] (Linux)
 
 ## 开发板上电启动
 
 在开发板上电启动前，确认以下事项：
- - 可启动的 SD 卡或eMMC
- - 5V2A 电源适配器
- - Micro USB 线
+
+- 可启动的 SD 卡或eMMC
+- 5V2A 电源适配器
+- Micro USB 线
 
 然后按照以下步骤操作：
 
- 1. 将电源适配器拔出电源插座。
- 2. 使用 micro USB 线连接电源适配器和主板。
- 3. 插入可启动的 SD 卡或eMMC 之一（不能同时插入）。
- 4. 插入 HDMI 线、USB 鼠标或键盘（可选）。
- 5. 检查一切连接正常后，电源适配器上电。
+1. 将电源适配器拔出电源插座。
+2. 使用 micro USB 线连接电源适配器和主板。
+3. 插入可启动的 SD 卡或eMMC 之一（不能同时插入）。
+4. 插入 HDMI 线、USB 鼠标或键盘（可选）。
+5. 检查一切连接正常后，电源适配器上电。
 
 [ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
 [原始固件]: started.html#raw_firmware_format

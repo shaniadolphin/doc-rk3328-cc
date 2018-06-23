@@ -3,7 +3,9 @@
 `Adb` 是 Android Debug Bridge 的简称，是 Android 的命令行调试工具，可以完成多种功能，如跟踪系统日志、上传下载文件、安装应用等。
 
 ## 准备工作
+
 使用 `adb`时，你需要：
+
 1. 使用公对公 USB 线连接电脑和板子的 USB OTG 口:
    ![](img/hw_board_usbconn.png)
 2. 在跑 Android 的开发板上，选择 `Settings` -> `USB`，然后勾选 `Connect to PC` 选项。
@@ -16,7 +18,7 @@
 
 打开 `cmd` 窗口然后运行:
 
-```
+``` shell
 C:\adb\adb shell
 ```
 
@@ -25,36 +27,41 @@ C:\adb\adb shell
 ### Adb 在 Ubuntu 下的安装
 
 1. 安装 adb 工具:
-    ```
+
+    ``` shell
     sudo apt-get install android-tools-adb
     ```
 2. 添加设备 ID:
-    ```
+
+    ``` shell
     mkdir -p ~/.android
     vi ~/.android/adb_usb.ini
     # add the following line:
     0x2207
     ```
 3. 为非 root 用户添加 udev 规则：
-    ```
+
+    ``` shell
     sudo vi /etc/udev/rules.d/51-android.rules
     # add the following line：
     SUBSYSTEM=="usb", ATTR{idVendor}=="2207", MODE="0666"
     ```
 4. 重载 udev 规则:
-    ```
+
+    ``` shell
     sudo udevadm control --reload-rules
     sudo udevadm trigger
     ```
 5. 普通用户下重启 adb:
-    ```
+
+    ``` shell
     sudo adb kill-server
     adb start-server
     ```
 
 然后就可以直接使用 adb 了, 如:
 
-```
+``` shell
 adb shell
 ```
 
@@ -63,36 +70,42 @@ adb shell
 ### 连接管理
 
 列出所有连接设备以及它们的序列号：
-```
+
+``` shell
 adb devices
 ```
 
 若没有多连接设备，就必须用序列号来区分：
-```
+
+``` shell
 export ANDROID_SERIAL=<device serial number>
 adb shell ls
 ```
 
 也可以用 TCP/IP 网络连接 Adb ：
-```
+
+``` shell
 adb tcpip 5555
 ```
 
 Adb 会在设备上重启并监听 5555 TCP 端口， 这个时候就可以拔出 USB 线了。
 
 如果设备的 IP 地址为 192.168.1.100，执行以下命令连接:
-```
+
+``` shell
 adb connect 192.168.1.100:5555
 ```
 
 一旦连接，就可以执行 adb 命令了：
-```
+
+``` shell
 adb shell ps
 adb logcat
 ```
 
 直到断开 adb 连接：
-```
+
+``` shell
 adb disconnect 192.168.1.100:5555
 ```
 
@@ -101,12 +114,14 @@ adb disconnect 192.168.1.100:5555
 #### 查询系统日志
 
 用法:
-```bash
+
+``` shell
 adb logcat [option] [Application label]
 ```
 
 示例:
-```bash
+
+``` shell
 # 查看所有日志
 adb logcat
 
@@ -118,28 +133,32 @@ adb logcat -s WifiStateMachine StateMachine
 
 `adb bugreport` 用来收集错误报告和一些系统信息。
 
-```bash
+``` shell
 adb bugreport
 
 # 保存到本地，易于编辑和查看
 adb bugreport >bugreport.txt
 ```
 
-### 跑 shell
+### 运行 shell
+
 打开一个交互的 shell:
-```bash
+
+``` shell
 adb shell
 ```
 
 执行 shell 命令:
-```bash
+
+``` shell
 adb shell ps
 ```
 
 ### Apk 管理
 
 #### 安装 Apk
-```
+
+```text
 adb install [option] example.apk
 
 选项:
@@ -149,7 +168,8 @@ adb install [option] example.apk
 ```
 
 示例:
-```bash
+
+``` shell
 # 安装 facebook.apk
 adb install facebook.apk
 
@@ -158,23 +178,26 @@ adb install -r twitter.apk
 ```
 
 若安装失败，检查下常见原因:
- - `INSTALL_FAILED_ALREADY_EXISTS`: 尝试添加 `-r` 参数再次安装。
- - `INSTALL_FAILED_SIGNATURE_ERROR`: APK 签名不一致，这可能是由于签名和调试版本的不同导致的。如果确认APK文件签名是正常的，可以使用 adb uninstall 命令卸载旧的应用程序，然后重新安装。
- - `INSTALL_FAILED_INSUFFICIENT_STORAGE`: 存储空间不够。
+
+- `INSTALL_FAILED_ALREADY_EXISTS`: 尝试添加 `-r` 参数再次安装。
+- `INSTALL_FAILED_SIGNATURE_ERROR`: APK 签名不一致，这可能是由于签名和调试版本的不同导致的。如果确认APK文件签名是正常的，可以使用 `adb uninstall` 命令卸载旧的应用程序，然后重新安装。
+- `INSTALL_FAILED_INSUFFICIENT_STORAGE`: 存储空间不够。
 
 #### 卸载 Apk
 
-```bash
+``` shell
 adb uninstall apk_name
 ```
 
 示例:
-```bash
+
+``` shell
 adb uninstall com.android.chrome
 ```
 
 apk 包的名称可以用下面的命令列出:
-```bash
+
+``` shell
 adb shell pm list packages -f
 ...
 package:/system/app/Bluetooth.apk=com.android.bluetooth
@@ -182,4 +205,3 @@ package:/system/app/Bluetooth.apk=com.android.bluetooth
 ```
 
 Apk文件路径和软件包名称用 `=` 分隔。
-

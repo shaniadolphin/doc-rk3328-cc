@@ -5,13 +5,15 @@
 The rockchip firmware `release_update.img`, contains the boot loader `loader.img` and the real firmware data `update.img`:
 
 release_update.img
-```bash
+
+```text
 |- loader.img
 `- update.img
 ```
 
 `update.img` is packed with multiple image files, described by a control file named `package-file`. A typical `package-file` is:
-```bash
+
+```text
 # NAME Relative path
 package-file    package-file
 bootloader      Image/MiniLoaderAll.bin
@@ -29,17 +31,16 @@ backup          RESERVED
 #recover-script recover-script
 ```
 
- - `package-file`: packing description of `update.img`, which is also included by `update.img`.
- - `Image/MiniLoaderAll.bin`: The first bootloader loaded by cpu rom code.
- - `Image/parameter.txt`: Parameter file where you can set the kernel boot parameters and partition layout.
- - `Image/trust.img`: The Arm Trusted Image.
- - `Image/misc.img`: misc partition image, used to control boot mode of Android.
- - `Image/kernel.img`: Android kernel image.
- - `Image/resource.img`: Resource image with boot logo and kernel device tree blob.
- - `Image/boot.img`: Android initramfs, a root filesystem loaded in normal boot, contains important initialization and services description.
- - `Image/recovery.img`: Recovery mode image.
- - `Image/system.img`: Android system partition image.
-    
+- `package-file`: packing description of `update.img`, which is also included by `update.img`.
+- `Image/MiniLoaderAll.bin`: The first bootloader loaded by cpu rom code.
+- `Image/parameter.txt`: Parameter file where you can set the kernel boot parameters and partition layout.
+- `Image/trust.img`: The Arm Trusted Image.
+- `Image/misc.img`: misc partition image, used to control boot mode of Android.
+- `Image/kernel.img`: Android kernel image.
+- `Image/resource.img`: Resource image with boot logo and kernel device tree blob.
+- `Image/boot.img`: Android initramfs, a root filesystem loaded in normal boot, contains important initialization and services description.
+- `Image/recovery.img`: Recovery mode image.
+- `Image/system.img`: Android system partition image.
 
 Unpacking is extracting `update.img` from `release_update.img`,  and then unpacking all the image files inside.
 
@@ -47,7 +48,7 @@ While repacking, it is the inverse process. It synthesizes the image files descr
 
 ## Installation of Tools
 
-```bash
+``` shell
 git clone https://github.com/TeeFirefly/rk2918_tools.git
 cd rk2918_tools
 make
@@ -56,37 +57,42 @@ sudo cp afptool img_unpack img_maker mkkrnlimg /usr/local/bin
 
 ## Unpacking Rockchip Firmware
 
- - Unpacking `release_update.img`:
-  ```
-  $ cd /path/to/your/firmware/dir
-  $ img_unpack Firefly-RK3399_20161027.img img
-  rom version: 6.0.1
-  build time: 2016-10-27 14:58:18
-  chip: 33333043
-  checking md5sum....OK
-  ```
- - Unpacking `update.img`:
-  ```bash
-  $ cd img
-  $ afptool -unpack update.img update
-  Check file...OK
-  ------- UNPACK -------
-  package-file	0x00000800	0x00000280
-  Image/MiniLoaderAll.bin	0x00001000	0x0003E94E
-  Image/parameter.txt	0x00040000	0x00000350
-  Image/trust.img	0x00040800	0x00400000
-  Image/uboot.img	0x00440800	0x00400000
-  Image/misc.img	0x00840800	0x0000C000
-  Image/resource.img	0x0084C800	0x0003FE00
-  Image/kernel.img	0x0088C800	0x00F5D00C
-  Image/boot.img	0x017EA000	0x0014AD24
-  Image/recovery.img	0x01935000	0x013C0000
-  Image/system.img	0x02CF5000	0x2622A000
-  RESERVED	0x00000000	0x00000000
-  UnPack OK!
-  ```
- - Check the file tree in the update directory:
-  ```bash
+- Unpacking `release_update.img`:
+
+    ``` shell
+    $ cd /path/to/your/firmware/dir
+    $ img_unpack Firefly-RK3399_20161027.img img
+    rom version: 6.0.1
+    build time: 2016-10-27 14:58:18
+    chip: 33333043
+    checking md5sum....OK
+    ```
+
+- Unpacking `update.img`:
+
+    ``` shell
+    $ cd img
+    $ afptool -unpack update.img update
+    Check file...OK
+    ------- UNPACK -------
+    package-file             0x00000800    0x00000280
+    Image/MiniLoaderAll.bin  0x00001000    0x0003E94E
+    Image/parameter.txt      0x00040000    0x00000350
+    Image/trust.img          0x00040800    0x00400000
+    Image/uboot.img          0x00440800    0x00400000
+    Image/misc.img           0x00840800    0x0000C000
+    Image/resource.img       0x0084C800    0x0003FE00
+    Image/kernel.img         0x0088C800    0x00F5D00C
+    Image/boot.img           0x017EA000    0x0014AD24
+    Image/recovery.img       0x01935000    0x013C0000
+    Image/system.img         0x02CF5000    0x2622A000
+    RESERVED                 0x00000000    0x00000000
+    UnPack OK!
+    ```
+
+- Check the file tree in the update directory:
+
+  ``` shell
   $ cd update/
   $ tree
   .
@@ -112,19 +118,22 @@ sudo cp afptool img_unpack img_maker mkkrnlimg /usr/local/bin
 First of all, make sure `system` partition in `parameter.txt` file is larger enough to hold `system.img`. You can reference [Parameter file format](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf) to understand the partition layout.
 
 For example, in the line prefixed with "CMDLINE" in `parameter.txt`, you will find the description of `system` partition similiar to the following content:
-```bash
+
+```text
 0x00200000@0x000B0000(system)
 ```
 
 The heximal string before the "@" is the partiton size in sectors (1 sector = 512 bytes here), therefore the size of the system partition is:
-```bash
+
+``` shell
 $ echo $(( 0x00200000 * 512 / 1024 / 1024 ))M
 1024M
 ```
 
 To create `release_update_new.img`:
-```bash
-# The current directory is still update/, which contains package-file, 
+
+``` shell
+# The current directory is still update/, which contains package-file,
 # and files that package-file lists still exist
 # Copy the parameter file to paramter, because afptool is used by default
 
@@ -151,18 +160,19 @@ generate image...
 append md5sum...
 success!
 ```
+
 ## Customization
 
 ### Customizing system.img
 
 system.img is an ext4 file system format image file which can be mounted directly to the system for modification:
 
-```bash
+``` shell
 sudo mkdir -p /mnt/system
 sudo mount Image/system.img /mnt/system
 cd /mnt/system
 # Modify the contents of the inside.
-# Pay attention to the free space, 
+# Pay attention to the free space,
 # You can not add too many APKs
 
 # When finished, you need to unmount it
@@ -175,12 +185,14 @@ Note that the free space of `system.img` is almost 0. If you need to expand the 
 The following is an example of how to increase the size of the image file by 128MB.
 
 Before expanding, make sure `system.img` is not mounted by running:
-```
+
+``` shell
 mount | grep system
 ```
 
 Resize the image file:
-```bash
+
+``` shell
 dd if=/dev/zero bs=1M count=128 >> Image/system.img
 # Expand file system information
 e2fsck -f Image/system.img

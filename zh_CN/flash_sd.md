@@ -7,16 +7,18 @@
 如果使用 [SDCard Installer] 以外的工具，需要到[固件下载页面](http://www.t-firefly.com/doc/download/page/id/34.html)去下载固件，然后再选择工具去烧写。
 
 以下是支持的系统列表：
- - Android 7.1.2
- - Ubuntu 16.04
- - Debian 9
- - LibreELEC 9.0
+
+- Android 7.1.2
+- Ubuntu 16.04
+- Debian 9
+- LibreELEC 9.0
 
 **注意**：下载页面提供的全是[原始固件]，官方**不再提供**[RK 固件]。
 
 ## 准备 SD 卡
 
 作为启动盘，一张**优质可靠、高速读写**的 SD 卡，对于系统的稳定性来说是非常关键。现将 [《如何准备一张 SD 卡(英文)》](https://docs.armbian.com/User-Guide_Getting-Started/#how-to-prepare-a-sd-card)一文的要点摘录如下：
+
 - 遇到启动或稳定性问题，有超过 95% 的可能是电源供应不足或 SD 卡问题（坏卡，坏读卡器，烧写SD卡时出错，卡读写太慢）。
 - 推荐使用 Class 10 以上的 SD 卡，并使用专业工具去测试是否真卡。
 - 尽量使用带校验的烧写工具。
@@ -30,11 +32,11 @@
 请根据所用主机的操作系统选择相应的烧写 SD 卡工具：
 
 - 烧写 SD 卡
-  + 图形界面烧写工具：
-    * [SDCard Installer] (Linux/Windows/Mac)
-    * [Etcher] (Linux/Windows/Mac)
-  + 命令行烧写工具
-    * [dd] (Linux)
+    + 图形界面烧写工具：
+        * [SDCard Installer] (Linux/Windows/Mac)
+        * [Etcher] (Linux/Windows/Mac)
+    + 命令行烧写工具：
+        * [dd] (Linux)
 
 ## SDCard Installer
 
@@ -43,11 +45,12 @@
 [SDCard Installer] 节省了搜索开发板可用固件的时间。你只需要选择开发板、操作系统，插入 SD 卡，点击烧写按钮即可完成整个写卡工作，实在简单方便。
 
 **安装使用说明**：
+
 1. 到 [SDCard Installer 下载页面](http://www.t-firefly.com/doc/download/page/id/34.html)去下载[SDCard Installer]。
 2. 安装运行：
-   + Windows： 解压后运行安装程序，按照提示安装到系统，之后在开始菜单里找到 [SDCard Installer] 并运行它。
-   + Linux： 解压后运行其中的 `.AppImage` 文件即可。
-   + Mac： 直接双击 `.dwg` 文件，拖动安装到系统或直接运行。
+    + Windows： 解压后运行安装程序，按照提示安装到系统，之后在开始菜单里找到 [SDCard Installer] 并运行它。
+    + Linux： 解压后运行其中的 `.AppImage` 文件即可。
+    + Mac： 直接双击 `.dwg` 文件，拖动安装到系统或直接运行。
 3. 点击 "Choose an OS" 按钮， 在 "Please select your device" 组合框中选择 "ROC-RK3328-CC"。
 4. 可用的固件列表将从网络更新，如下图所示：
     ![](img/started_sdcard-installer.png)
@@ -56,11 +59,12 @@
 7. 点击 "Flash!" 按钮，开始固件下载、烧写和校验，请耐心等待。
     ![](img/started_sdcard-installer_flashing.png)
 
-**注意事项**： 
+**注意事项**：
+
 - 有时，当进度达到 99％ 或 100％ 时，可能会出现卸载 SD 卡的错误，这可以忽略，并且不会损坏烧写到 SD 卡的数据：
     ![](img/started_sdcard-installer_umount_fail.png)
 - 在线下载的固件会缓存到本地目录，下次烧写时不用重新下载。缓存目录可以点击左下角的设置按钮，在 "Download Location:" 处设置。
- 
+
 ## Etcher
 
 [Etcher] 与 [SDCard Installer] 相比，少了固件选择的集成，但代码比较新。如果 [SDCard Installer] 在烧写 SD 卡中出错，或有什么问题，可以尝试使用 [Etcher] 去烧写，此时直接使用 [SDCard Installer] 缓存目录里的固件即可。
@@ -94,6 +98,7 @@
 首先，到[SD Firmware Tool 下载页面](https://pan.baidu.com/s/1migPY1U#list/path=%2FPublic%2FDevBoard%2FROC-RK3328-CC%2FTools%2FSD_Firmware_Tool&parentPath=%2FPublic%2FDevBoard%2FROC-RK3328-CC)去下载 `SD_Firmware_Tool`，并解压。
 
 运行 `SD_Firmware_Tool.exe`:
+
 ![](img/sdfirmwaretool.zh_CN.png)
 
 1. 插入 SD 卡。
@@ -103,7 +108,9 @@
 5. 点击 "开始创建" 按钮。
 6. 然后会显示警告对话框，选择 "是" 来确保选择了正确的SD卡设备。
 7. 等待操作完成，直到提示成功对话框出现：
+
     ![](img/sdfirmwaretool_done.zh_CN.png)
+
 8. 拔出 SD 卡。
 
 [SDCard Installer]: flash_sd.html#sdcard-installer

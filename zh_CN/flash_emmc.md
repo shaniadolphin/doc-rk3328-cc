@@ -19,61 +19,72 @@ eMMC 一般都是直接焊在主板上，有些虽然是可插拔的，但没有
 如果 bootloader 检测到 Recovery 按钮按下并且 USB 已连接，它就会进入 [Rockusb 模式]，等待来自主机的命令。
 
 进入 [Rockusb 模式] 的准备工作：
- - 5V2A 电源适配器。
- - 连接电源适配器和开发板的 Micro USB 线。
- - 用来连接电脑 PC 以及开发板的公对公 USB 线。
- - eMMC 。
+
+- 5V2A 电源适配器。
+- 连接电源适配器和开发板的 Micro USB 线。
+- 用来连接电脑 PC 以及开发板的公对公 USB 线。
+- eMMC 。
 
 操作步骤：
- 1. 将所有 USB 线（包括 Micro USB 线和公对公 USB 线）拔出开发板，以保持电路板断电。
- 2. 安装好 eMMC，拔出 SD 卡。
- 3. 使用公对公 USB 线将主机的 USB 端口与开发板的靠近电路板的 USB 2.0端口相连：
-    ![](img/hw_board_usbconn.png)
- 4. 按住开发板上的 RECOVERY 按键。
- 5. 从开发板上拔出 Micro USB 线。
- 6. 等待大概 3 秒左右松开 RECOVERY 按键。
+
+1. 将所有 USB 线（包括 Micro USB 线和公对公 USB 线）拔出开发板，以保持开发板断电。
+2. 安装好 eMMC，拔出 SD 卡。
+3. 使用公对公 USB 线将主机的 USB 端口与开发板的双层 USB 端口中靠近电路板的 OTG 端口相连：
+
+   ![](img/hw_board_usbconn.png)
+
+4. 按住开发板上的 RECOVERY 按键。
+5. 将 Micro USB 线插入到开发板中，让开发板上电。
+6. 等待大概 3 秒左右松开 RECOVERY 按键。
 
 <span id="maskrom-mode"></span>
 
 ### Maskrom 模式
 
 如果开发板上电后遇到以下情况之一：
- - eMMC 内容为空。
- - eMMC 上的 bootloader 损坏。
- - 将 eMMC 数据/时钟引脚接地，eMMC读取数据失败。
 
-CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一段小型的 ROM 代码，等待主机通过 USB 上传 bootloader 来初始化 DDR 内存并进入升级状态。这种模式称为 `Maskrom模式` 。
+- eMMC 内容为空。
+- eMMC 上的 bootloader 损坏。
+- 将 eMMC 数据/时钟引脚接地，eMMC读取数据失败。
 
-强制进入 `MaskRom模式` 涉及到硬件操作，具有一定的风险，因此操作上需要 **非常谨慎** 。
+CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一段小型的 ROM 代码，等待主机通过 USB 上传 bootloader 来初始化 DDR 内存并进入升级状态。这种模式称为 [Maskrom 模式] 。
+
+强制进入 [MaskRom 模式] 涉及到硬件操作，具有一定的风险，因此操作上需要 **非常谨慎** 。
 
 进入 [Maskrom 模式] 的准备工作：
- - 5V2A 电源适配器。
- - 用来连接电源适配器和开发板的 Micro USB 线。
- - 连接电脑 PC 和开发板的公对公 USB 线。
- - 用于将 eMMC 时钟引脚短接到地的金属镊子。
- - eMMC 。
+
+- 5V2A 电源适配器。
+- 用来连接电源适配器和开发板的 Micro USB 线。
+- 连接电脑 PC 和开发板的公对公 USB 线。
+- 用于将 eMMC 时钟引脚短接到地的金属镊子。
+- eMMC 。
 
 操作步骤：
- 1. 从开发板上拔出所有的 USB 线（包括 micro USB 线以及公对公 USB 线）,保持开发板的断电状态。
- 2. 安装好 eMMC，拔出 SD 卡。
- 3. 使用公对公 USB 线将主机的 USB 端口与开发板的靠近电路板的 USB 2.0端口相连：
+
+1. 将所有 USB 线（包括 Micro USB 线和公对公 USB 线）拔出开发板，以保持开发板断电。
+2. 安装好 eMMC，拔出 SD 卡。
+3. 使用公对公 USB 线将主机的 USB 端口与开发板的双层 USB 端口中靠近电路板的 OTG 端口相连：
+
     ![](img/hw_board_usbconn.png)
- 4. 找到开发板上预留的 eMMC 的 CLK 引脚和 GND 脚，见下图：
+
+4. 找到开发板上预留的 eMMC 的 CLK 引脚和 GND 脚，见下图：
+
     ![](img/rk3328_maskrom_pads.jpg)
- 5. 用金属镊子短接 eMMC 的 CLK 和 GND 焊盘，并保持短接良好。
- 6. 将 micro USB 线插到开发板上。
- 7. 保持住一秒后松开镊子。
+
+5. 用金属镊子短接 eMMC 的 CLK 和 GND 焊盘，并保持短接良好。
+6. 将 Micro USB 线插入到开发板中，让开发板上电。
+7. 保持住一秒后松开镊子。
 
 ## 烧写工具
 
-请根据所用主机的操作系统选择相应的烧写 eMMC工具：
+请根据所用主机的操作系统选择相应的烧写 eMMC 工具：
 
 - 烧写 eMMC
-  + 图形界面烧写工具：
-    * [AndroidTool] (Windows)
-  + 命令行烧写工具：
-    * [upgrade_tool] (Linux)
-    * [rkdeveloptool] (Linux)
+    + 图形界面烧写工具：
+        * [AndroidTool] (Windows)
+    + 命令行烧写工具：
+        * [upgrade_tool] (Linux)
+        * [rkdeveloptool] (Linux)
 
 ## AndroidTool
 
@@ -101,8 +112,8 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 ### 安装 AndroidTool
 
 > [AndroidTool 下载地址](http://www.t-firefly.com/share/index/listpath/id/acd8e1e37176fba5bf61fb7bf4503998.html)
- 
-解压后运行里面的 `AndroidTool.exe`：
+
+下载并解压后运行里面的 `AndroidTool.exe`：
 
 ![](img/androidtool.zh_CN.png)
 
@@ -114,7 +125,7 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 [原始固件]需要从 eMMC 的偏移地址为 0 的位置开始烧写。但在 [Rockusb 模式] 下无法做到这点，因为所有 LBA 写入操作会偏移 0x2000 个扇区（即 LBA0 对应于存储设备上第 0x2000 个扇区）。因此，开发板必须强制进入 [Maskrom 模式] 才能烧写[原始固件]。
 
-使用 [AndroidTool] 烧写[原始固件]的步骤如下：
+使用 [AndroidTool] 烧写[原始固件]到 eMMC 的步骤如下：
 
 1. 强制设备进入 [Maskrom 模式]。
 2. 运行 [AndroidTool]。
@@ -127,7 +138,7 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 ### 烧写 RK 固件
 
-使用 [AndroidTool] 烧写 [RK 固件]的步骤如下：
+使用 [AndroidTool] 烧写 [RK 固件]到 eMMC 的步骤如下：
 
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式]。
 2. 运行 [AndroidTool]。
@@ -138,36 +149,40 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 
 ### 烧写分区映像
 
- 使用 [AndroidTool] 烧写[分区映像]的步骤如下：
+ 使用 [AndroidTool] 烧写[分区映像]到 eMMC 的步骤如下：
 
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式]。
 2. 运行 `AndroidTool`。
 3. 打开 "下载镜像" 制表页。
 4. 保持表格第一行不变。
 5. 鼠标右键点击其它行，在弹出菜单中选择 "删除项" ，重复直至删除第一行除外的所有行。
+
    ![](img/androidtool_del.zh_CN.png)
+
 6. 鼠标右键点击表格，在弹出菜单中选择 "添加项" 以便添加[分区映像]：
-	* 选中第一个单元格上的复选框。
-	* 填入 `parameter.txt` 中该分区的起始扇区作为烧写地址（如果是 [Maskrom 模式] 则须再加上 `0x2000`）。
-	* 单击右侧空白单元格，在弹出的文件对话框里打开对应的[分区映像]文件。
-	![](img/androidtool_add.zh_CN.png)
-1. 点击 "执行" 按钮烧录。
+    + 选中第一个单元格上的复选框。
+    + 填入 `parameter.txt` 中该分区的起始扇区作为烧写地址（如果是 [Maskrom 模式] 则须再加上 `0x2000`）。
+    + 单击右侧空白单元格，在弹出的文件对话框里打开对应的[分区映像]文件。
+
+    ![](img/androidtool_add.zh_CN.png)
+
+7. 点击 "执行" 按钮烧录。
 
 **注意**：
 
 - 您可以通过重复步骤 6 将多个分区映像烧写到闪存。
 - 通过取消选中地址单元格前面的复选框，可以跳过此分区的烧写。
-- 在 [Maskrom 模式] 中， `parameter.txt` 中分区的起始扇区必须再加上 `0x2000` 作为烧写地址。参见[分区偏移量](#partition-offset)一章以便使用脚本获取该地址。
+- 在 [Maskrom 模式] 中， `parameter.txt` 中分区的起始扇区必须再加上 `0x2000` 作为烧写地址。参见[《分区偏移量》](#partition-offset)一章以便使用脚本获取该地址。
 
 ## upgrade_tool
 
-[upgrade_tool] 是 Linux 下用来烧写[原始固件]、[RK 固件]和[分区映像]到 eMMC 的工具。
-
-[upgrade_tool] 是由 Rockchip 提供的闭源的命令行工具。
+[upgrade_tool] 是 Linux 下用来烧写[原始固件]、[RK 固件]和[分区映像]到 eMMC 的工具，是 Rockchip 提供的闭源命令行工具。
 
 ### 安装 upgrade_tool
 
-首先到[这里](https://gitlab.com/TeeFirefly/RK3328-Nougat/blob/roc-rk3328-cc/RKTools/linux/Linux_Upgrade_Tool/Linux_Upgrade_Tool_v1.24.zip)下载 [upgrade_tool]，并安装到 Linux 系统上：
+> [upgrade_tool 下载链接](https://gitlab.com/TeeFirefly/RK3328-Nougat/blob/roc-rk3328-cc/RKTools/linux/Linux_Upgrade_Tool/Linux_Upgrade_Tool_v1.24.zip)
+
+下载 [upgrade_tool]，并安装到 Linux 系统上：
 
     unzip Linux_Upgrade_Tool_v1.24.zip
     cd Linux_UpgradeTool_v1.24
@@ -175,33 +190,37 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
     sudo chown root:root /usr/local/bin/upgrade_tool
     sudo chmod 0755 /usr/local/bin/upgrade_tool
 
-然后根据[此处](#udev)的说明去添加 `udev` 规则。这是为了让普通用户有权限烧写 Rockchip 设备。如果跳过这步，那么所有的烧写命令需要在前面加 `sudo ` 才能成功执行。
+然后根据[此处](#udev)的说明去添加 `udev` 规则。这是为了让普通用户有权限烧写 Rockchip 设备。如果跳过这步，那么所有的烧写命令均需在前面加 `sudo` 才能成功执行。
 
 ### 烧写原始固件
 
 [原始固件]需要从 eMMC 的偏移地址为 0 的位置开始烧写。但在 [Rockusb 模式] 下所有 LBA 写入操作会偏移 0x2000 个扇区（即 LBA0 对应于存储设备上的第 0x2000 个扇区）。因此，开发板必须强制进入 [Maskrom 模式] 才能烧写[原始固件]。
 
-使用 [upgrade_tool] 烧写[原始固件]的步骤如下：
+使用 [upgrade_tool] 烧写[原始固件]到 eMMC 的步骤如下：
+
 1. 强制设备进入 [Maskrom 模式]。
 2. 运行以下命令：
-    ```
-    upgrade_tool db           out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
-    upgrade_tool wl 0x0       out/system.img
-    upgrade_tool rd           # reset device to boot
+    ``` shell
+    upgrade_tool db     out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
+    upgrade_tool wl 0x0 out/system.img
+    upgrade_tool rd     # 重置并启动设备
     ```
 
 其中：
- - `rk3328_loader_ddr786_v1.06.243.bin` 是编译 `U-boot` 时复制进去的 loader 文件，也直接到[此处](https://github.com/rockchip-linux/rkbin/tree/master/rk33)下载 `rk3328_loader_xxx.bin` 文件。
- - `system.img` 是打包后的[原始固件]，也可以是官网上下载并解压后的[原始固件]文件。
+
+- `rk3328_loader_ddr786_v1.06.243.bin` 是编译 `U-Boot` 时复制进去的 loader 文件，也直接到[此处](https://github.com/rockchip-linux/rkbin/tree/master/rk33)下载 `rk3328_loader_xxx.bin` 文件。
+- `system.img` 是打包后的[原始固件]，也可以是官网上下载并解压后的[原始固件]文件。
 
 ### 烧写 RK 固件
 
-使用 [upgrade_tool] 烧写 [RK 固件]的步骤如下：
+使用 [upgrade_tool] 烧写 [RK 固件]到 eMMC 的步骤如下：
+
 1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式]。
 2. 使用 `upgrade_tool` 烧写 RK 固件：
+    ``` shell
+    upgrade_tool uf update.img
     ```
-    upgrade_tool uf /path/to/rk/firmware
-    ```
+
 ### 烧写分区映像
 
 取决开发板原有的固件，烧写[分区映像]到 eMMC 的指令会有所不同。
@@ -211,36 +230,38 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
 如果开发板原有系统是[原始固件]，那么很可能使用了 `GPT` 分区方案。每个分区的预定义偏移量和大小可以在 SDK 里的 `build/partitions.sh` 中找到，可以参考[《分区偏移量》](#partition-offset)一章。
 
 使用 [upgrade_tool] 烧写 [分区映像]的步骤如下：
+
 1. 强制设备进入 [Maskrom 模式]
-2. 使用 `upgrade_tool` 烧写分区映像：
-    ```
+2. 使用 [upgrade_tool] 烧写分区映像：
+    ``` shell
     upgrade_tool db         out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
     upgrade_tool wl 0x40    out/u-boot/idbloader.img
     upgrade_tool wl 0x4000  out/u-boot/uboot.img
     upgrade_tool wl 0x6000  out/u-boot/trust.img
     upgrade_tool wl 0x8000  out/boot.img
     upgrade_tool wl 0x40000 out/linaro-rootfs.img
-    upgrade_tool rd         # reset device to boot
+    upgrade_tool rd         # 重置并启动设备
     ```
 
 **RK 固件**
 
-如果开发板原有系统是 [RK固件]，那么它使用 `parameter` 文件作为分区方案，这样就可直接使用分区名称来烧写分区映像：
+如果开发板原有系统是 [RK 固件]，那么它使用 `parameter` 文件作为分区方案，这样就可直接使用分区名称来烧写分区映像：
 
-1. 强制设备进入 [Rockusb 模式] 或 [Maskrom 模式] 。
-2. 使用 `upgrade_tool` 烧写分区映像：
-    ```
+1. 强制设备进入 [Rockusb 模式]。
+2. 使用 [upgrade_tool] 烧写分区映像：
+    ``` shell
     upgrade_tool di -b /path/to/boot.img
     upgrade_tool di -k /path/to/kernel.img
     upgrade_tool di -s /path/to/system.img
     upgrade_tool di -r /path/to/recovery.img
     upgrade_tool di -m /path/to/misc.img
     upgrade_tool di resource /path/to/resource.img
-    upgrade_tool di -p parameter   # flash parameter
-    upgrade_tool ul bootloader.bin # flash bootloader
+    upgrade_tool di -p parameter   # 烧写 parameter
+    upgrade_tool ul bootloader.bin # 烧写 bootloader
     ```
 
 注意：
+
 - `-b` 是 `boot` 分区的预定义缩写。如果没有缩写可用，请改为分区名称，例如上述例子中的 `resource`。
 - 可根据 [《参数文件格式》](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf) 这份文档的说明自定义内核参数和分区布局。分区布局更改后，必须先重新烧写该 `parameter` 文件，方可重新烧写受影响的相应分区。
 
@@ -271,46 +292,50 @@ CPU 在 eMMC 中就会找不到有效的 IDB (IDentity Block)，转而执行一�
     make
     sudo make install
 
-然后根据[此处](#udev)的说明去添加 `udev` 规则。这是为了让普通用户有权限烧写 Rockchip 设备。如果跳过这步，则所有的烧写命令需要在前面加 `sudo ` 才能成功执行。
+然后根据[此处](#udev)的说明去添加 `udev` 规则。这是为了让普通用户有权限烧写 Rockchip 设备。如果跳过这步，则所有的烧写命令均需在前面加 `sudo` 才能成功执行。
 
 ### 烧写原始固件
 
 [原始固件]需要从 eMMC 的偏移地址为 0 的位置开始烧写。但在 [Rockusb 模式] 下所有 LBA 写入操作会偏移 0x2000 个扇区（即 LBA0 对应于存储设备上的第 0x2000 个扇区）。因此，开发板必须强制进入 [Maskrom 模式] 才能烧写[原始固件]。
 
-使用 [rkdeveloptool] 烧写[原始固件]的步骤如下：
+使用 [rkdeveloptool] 烧写[原始固件]到 eMMC 的步骤如下：
+
 1. 强制设备进入 [Maskrom 模式]。
 2. 运行以下命令：
-    ```
+    ``` shell
     rkdeveloptool db           out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
     rkdeveloptool wl 0x0       out/system.img
-    rkdeveloptool rd           # reset device to boot
+    rkdeveloptool rd           # 重置并启动设备
     ```
 
 其中：
- - `rk3328_loader_ddr786_v1.06.243.bin` 是编译 `U-boot` 时复制进去的 loader 文件，也直接到[此处](https://github.com/rockchip-linux/rkbin/tree/master/rk33)下载 `rk3328_loader_xxx.bin` 文件。
- - `system.img` 是打包后的[原始固件]，也可以是官网上下载并解压后的[原始固件]文件。
 
-### 烧写分区映像：
+- `rk3328_loader_ddr786_v1.06.243.bin` 是编译 `U-boot` 时复制进去的 loader 文件，也直接到[此处](https://github.com/rockchip-linux/rkbin/tree/master/rk33)下载 `rk3328_loader_xxx.bin` 文件。
+- `system.img` 是打包后的[原始固件]，也可以是官网上下载并解压后的[原始固件]文件。
 
-以下的说明**仅适用**于开发板原有系统是[原始固件]时的[分区映像]烧写。那么很可能使用了 `GPT` 分区方案。每个分区的预定义偏移量和大小可以在 SDK 里的 `build/partitions.sh` 中找到，可以参考[《分区偏移量》](#partition-offset)一章。
+### 烧写分区映像
+
+以下的说明**仅适用**于开发板原有系统是[原始固件]时的[分区映像]烧写。每个分区的预定义偏移量和大小可以在 SDK 里的 `build/partitions.sh` 中找到，可以参考[《分区偏移量》](#partition-offset)一章。
 
 使用 [rkdeveloptool] 烧写[分区映像]的步骤如下：
+
 1. 强制设备进入 [Maskrom 模式]。
 2. 运行以下命令：
-    ```
+    ``` shell
     rkdeveloptool db           out/u-boot/rk3328_loader_ddr786_v1.06.243.bin
     rkdeveloptool wl 0x40      out/u-boot/idbloader.img
     rkdeveloptool wl 0x4000    out/u-boot/uboot.img
     rkdeveloptool wl 0x6000    out/u-boot/trust.img
     rkdeveloptool wl 0x8000    out/boot.img
     rkdeveloptool wl 0x40000   out/linaro-rootfs.img
-    rkdeveloptool rd           # reset device to boot
+    rkdeveloptool rd           # 重置并启动设备
     ```
 
 ## udev
 
 创建 `/etc/udev/rules.d/99-rk-rockusb.rules`，并插入以下内容[1](https://github.com/rockchip-linux/rkdeveloptool/blob/master/99-rk-rockusb.rules)。 如有必要，用实际 Linux 组替换 `users` 组：
-```
+
+``` shell
 SUBSYSTEM!="usb", GOTO="end_rules"
 
 # RK3036
@@ -333,7 +358,6 @@ LABEL="end_rules"
 
     sudo udevadm control --reload-rules
     sudo udevadm trigger
-
 
 <span id="partition-offset"></span>
 
@@ -362,27 +386,27 @@ LABEL="end_rules"
 
 ### parameter
 
-如果使用[RK固件]，那么系统是使用 `parameter.txt` 文件来定义分区方案，该文件的格式参见文档[《参数文件格式》](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf) 。
+如果使用 [RK 固件]，那么系统是使用 `parameter.txt` 文件来定义分区方案，该文件的格式参见文档[《参数文件格式》](http://www.t-firefly.com/download/Firefly-RK3399/docs/Rockchip%20Parameter%20File%20Format%20Ver1.3.pdf) 。
 
 这里有一个 Linux 下的 Bash 脚本能列出 `parameter.txt` 中的分区偏移量：
 
-```
+``` shell
 #!/bin/sh
 
 PARAMETER_FILE="$1"
 [ -f "$PARAMETER_FILE" ] || { echo "Usage: $0 <parameter_file>"; exit 1; }
 
 show_table() {
-	echo "$1"
-	echo "--------"
-	printf "%-20s %-10s %s\n" "NAME" "OFFSET" "LENGTH"
-	for PARTITION in `cat ${PARAMETER_FILE} | grep '^CMDLINE' | sed 's/ //g' | sed 's/.*:\(0x.*[^)])\).*/\1/' | sed 's/,/ /g'`; do
-		NAME=`echo ${PARTITION} | sed 's/\(.*\)(\(.*\))/\2/'`
-		START=`echo ${PARTITION} | sed 's/.*@\(.*\)(.*)/\1/'`
-		LENGTH=`echo ${PARTITION} | sed 's/\(.*\)@.*/\1/'`
-		START=$((START + $2))
-		printf "%-20s 0x%08x %s\n" $NAME $START $LENGTH
-	done
+    echo "$1"
+    echo "--------"
+    printf "%-20s %-10s %s\n" "NAME" "OFFSET" "LENGTH"
+    for PARTITION in `cat ${PARAMETER_FILE} | grep '^CMDLINE' | sed 's/ //g' | sed 's/.*:\(0x.*[^)])\).*/\1/' | sed 's/,/ /g'`; do
+        NAME=`echo ${PARTITION} | sed 's/\(.*\)(\(.*\))/\2/'`
+        START=`echo ${PARTITION} | sed 's/.*@\(.*\)(.*)/\1/'`
+        LENGTH=`echo ${PARTITION} | sed 's/\(.*\)@.*/\1/'`
+        START=$((START + $2))
+        printf "%-20s 0x%08x %s\n" $NAME $START $LENGTH
+    done
 }
 
 show_table "Rockusb Mode" 0
@@ -394,8 +418,8 @@ show_table "Maskrom Mode" 0x2000
 
 下面是一个显示 `RK3328 Android SDK` 中定义的分区偏移量的例子：
 
-```
-$ show_rk_parameter.sh device/rockchip/rk3328/parameter.txt 
+```text
+$ show_rk_parameter.sh device/rockchip/rk3328/parameter.txt
 Rockusb Mode
 --------
 NAME                 OFFSET     LENGTH
@@ -433,8 +457,8 @@ system               0x000ae000 0x00300000
 userdata             0x003ae000 -
 ```
 
-[Rockusb 模式]: bootmode.html#rockusb-mode
-[Maskrom 模式]: bootmode.html#maskrom-mode
+[Rockusb 模式]: flash_emmc.html#rockusb-mode
+[Maskrom 模式]: flash_emmc.html#maskrom-mode
 [原始固件]: started.html#raw_firmware_format
 [RK 固件]: started.html#rockchip_firmware_format
 [分区映像]: started.html#partition_image

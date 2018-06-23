@@ -4,7 +4,7 @@ This is the manual of the ROC-RK3328-CC board.
 
 The manual can be built by:
 
-```bash
+``` shell
 # Install requiremnts
 sudo apt-get install virtualenv
 virtualenv --python=python3 ~/sphinx-markdown

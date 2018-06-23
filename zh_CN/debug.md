@@ -4,13 +4,13 @@
 
 ## 准备 USB 串口适配器
 
-**选择一个 USB 串口适配器** 
+### 选择 USB 串口适配器
 
 [ROC-RK3328-CC] 的 UART 调试口默认使用**1,500,000**波特率和 TTL 电平。
 
 一些串口适配器不能支持如此高的波特率。因此在购买之前，请确保它符合要求并有可用的驱动。参考 [Firefly 在线商城](https://store.t-firefly.com/goods.php?id=24)上带 `CP2104` 芯片的 USB 串口适配器。
 
-**连接适配器和调试口**
+### 连接适配器和调试口
 
 用三根线将 TX/RX/GND 引脚分别连接在一起：
 
@@ -18,7 +18,7 @@
 
 如果在使用某些适配器时串口控制台没有输出，可以尝试将适配器的 TX 引脚连接到开发板的 RX 引脚，适配器的 RX 引脚连接到开发板的 TX 引脚，即交换一下 TX、RX 引脚。
 
-**串口参数配置**
+### 串口参数配置
 
 [ROC-RK3328-CC] 使用如下配置:
 
@@ -32,12 +32,13 @@
 
 ## Windows 下的串口调试
 
-**安装驱动**
+### 安装驱动
 
 安装卖家推荐的 USB 串口适配器驱动。如果没有，可以检查芯片组并尝试以下驱动
- - [CH340](http://www.wch.cn/downloads.php?name=pro&proid=5)
- - [PL2303](http://www.prolific.com.tw/US/ShowProduct.aspx?pcid=41)
- - [CP210X](http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx)
+
+- [CH340](http://www.wch.cn/downloads.php?name=pro&proid=5)
+- [PL2303](http://www.prolific.com.tw/US/ShowProduct.aspx?pcid=41)
+- [CP210X](http://www.silabs.com/products/mcu/pages/usbtouartbridgevcpdrivers.aspx)
 
 > 提示：如果 PL2303 在 Win8 下无法工作，则可以尝试将驱动程序降级到版本 3.3.5.122 或之前。
 
@@ -45,7 +46,7 @@
 
 ![](img/debug_devicemanager_com.png)
 
-**安装软件**
+### 安装工具
 
 Windows 中有很多串口终端工具，例如 putty 和 SecureCRT。以下介绍Putty这款流行的开源软件的使用。
 
@@ -66,30 +67,30 @@ Windows 中有很多串口终端工具，例如 putty 和 SecureCRT。以下介�
 
 连接串口适配器，并通过如下命令检查相应的串口设备文件：
 
-> $ ls -l /dev/ttyUSB0 
-> crw-rw---- 1 root uucp 188, 0 Apr 10 16:44 /dev/ttyUSB0
+    $ ls -l /dev/ttyUSB*
+    crw-rw---- 1 root uucp 188, 0 Apr 10 16:44 /dev/ttyUSB0
 
 将你的 Linux 用户添加到 `uucp` 组中，以便获得访问此设备的权限（否则每次需要在命令前加`sudo`来运行相应命令）:
 
-> sudo gpasswd -a $(whoami) uucp
+    sudo gpasswd -a $(whoami) uucp
 
 用户组的更改将在注销并重新登录 Linux 后生效，或使用 `newgrp` 命令进入带有新组的 shell:
 
-> newgrp uucp
+    newgrp uucp
 
 然后根据偏好，使用自己喜欢的串口控制台工具。以下介绍 picocom 和 minicom 。
 
 ### picocom
-    
+
 `picocom` 轻便小巧， 容易使用。
 
 安装 `picocom` 命令:
 
-> sudo apt-get install picocom
+    sudo apt-get install picocom
 
 启动 `picocom`:
 
-```
+```text
 $ picocom -b 1500000 /dev/ttyUSB0
 picocom v3.1
 
@@ -107,8 +108,8 @@ hangup is      : no
 nolock is      : no
 send_cmd is    : sz -vv
 receive_cmd is : rz -vv -E
-imap is        : 
-omap is        : 
+imap is        :
+omap is        :
 emap is        : crcrlf,delbs,
 logfile is     : none
 initstring     : none
@@ -129,20 +130,20 @@ Terminal ready
 
 启动 `minicom`：
 
-```
+```text
 $ minicom
 Welcome to minicom 2.7
 
 OPTIONS: I18n
 Compiled on Jan  1 2014, 17:13:19.
 Port /dev/ttyUSB0, 15:57:00
-                                                                                                                       
+
 Press CTRL-A Z for help on special keys
 ```
 
 根据以上提示: 按 `Ctrl-a`，然后按 `z`（而不是 `Ctrl-z` ）调出帮助菜单：
 
-```
+```text
 +-------------------------------------------------------------------+
 |                      Minicom Command Summary                      |
 |                                                                   |
@@ -165,7 +166,8 @@ Press CTRL-A Z for help on special keys
 ```
 
 按提示按 `O` 进入设置屏幕:
-```
+
+```text
            +-----[configuration]------+
            | Filenames and paths      |
            | File transfer protocols  |
@@ -180,7 +182,7 @@ Press CTRL-A Z for help on special keys
 
 选择 `Serial port setup`，然后按选项前面的大写字母并设置为如下所示的值:
 
-```
+```text
    +-----------------------------------------------------------------------+
    | A -    Serial Device      : /dev/ttyUSB0                              |
    | B - Lockfile Location     : /var/lock                                 |
@@ -194,9 +196,9 @@ Press CTRL-A Z for help on special keys
    +-----------------------------------------------------------------------+
 ```
 
-注意:
-* Hardware Flow Control 和 Software Flow Control 应该设置为 No 。
-* 结束设置之后， 按 `ESC` 键回到之前的菜单， 选择 "Save setup as dfl" 保存覆盖掉默认配置。
+**注意**:
+
+- `Hardware Flow Control` 和 `Software Flow Control` 应该设置为 No 。
+- 结束设置之后， 按 `ESC` 键回到之前的菜单， 选择 `Save setup as dfl` 保存覆盖掉默认配置。
 
 [ROC-RK3328-CC]: http://www.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC 官网"
-
