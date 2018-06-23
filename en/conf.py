@@ -102,7 +102,17 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    'product_show': True,
+    'product_name': 'ROC-RK3288-CC',
+    'product_img': 'http://en.t-firefly.com/upload/portal/20180607/0473980a1b24a8f9bdf9ed3097ccb2aa.png',
+    'product_des_one': '',
+    'product_des_two': 'Firefly first ultra-small open-source main board, unique USB3.0 and DDR4 to make its performance faster and more stable. The ultra-affordable ROC-RK3328-CC is your first choice for exploring the programming world.',
+    'product_buy': 'http://shop.t-firefly.com/goods.php?id=65',
+    'product_regula': '',
+    'product_buy_lang': 'Buy',
+    'product_regula_lang': ''
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
