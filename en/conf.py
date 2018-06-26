@@ -18,8 +18,8 @@ import os
 
 # -- Project information -----------------------------------------------------
 
-project = 'Firefly-Board Manual'
-_project_filename = 'Firefly-Board_Manual'
+project = 'ROC-RK3328-CC'
+_project_filename = 'ROC-RK3328-CC_Manual'
 copyright = '2018, Firefly Team'
 author = 'Firefly Team'
 
@@ -129,6 +129,7 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
+html_logo = 'img/firefly-icon-64.png'
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
