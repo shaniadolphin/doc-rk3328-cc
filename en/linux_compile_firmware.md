@@ -125,7 +125,7 @@ cp defconfig arch/arm64/configs/fireflyrk3328_linux_defconfig
 
 ## Building Root Filesystem
 
-You can download the prebuilt root filesystem or build one yourself by following [Linux Building Root Filesystem](linux_build_rootfilesystem.html).
+You can download the prebuilt root filesystem or build one yourself by following [Building Linux Root Filesystem].
 
 ## Packing Raw Format Firmware
 
@@ -156,9 +156,9 @@ To create the [Raw Firmare]:
 ./build/mk-image.sh -c rk3328 -t system -r out/rootfs.img
 ```
 
-The command above will pack the neccessary image files into `out/system.img`, according to this [storage map](http://opensource.rock-chips.com/wiki_Partitions#Default_storage_map).
+The command above will pack the neccessary image files into `out/system.img`, according to this [Storage Map].
 
-To flash this [Raw Firmware], please follow the [Getting Started](started.html) chapter.
+To flash this [Raw Firmware], please follow the [Getting Started] chapter.
 
 [ROC-RK3328-CC]: http://en.t-firefly.com/product/rocrk3328cc.html "ROC-RK3328-CC Official Website"
 [Raw Firmware]: started.html#raw_firmware_format
