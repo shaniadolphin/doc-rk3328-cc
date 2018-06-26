@@ -15,6 +15,7 @@
 import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 # -- Project information -----------------------------------------------------
 
@@ -103,17 +104,18 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-#html_theme_options = {
-#    'product_show': True,
-#    'product_name': 'ROC-RK3288-CC',
-#    'product_img': 'http://www.t-firefly.com/upload/portal/20180528/e390c2e0c48911a7be83cef0208fd889.png',
-#    'product_des_one': '',
-#    'product_des_two': 'Firefly 首个超小型开源主板，特有的 USB 3.0 与 DDR4 让其性能更快更稳定，超高性价比的 ROC-RK3328-CC 是你探索程序世界的首选。',
-#    'product_buy': 'https://store.t-firefly.com/goods.php?id=66',
-#    'product_regula': 'http://download.t-firefly.com/%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E6%96%87%E6%A1%A3/ROC-RK3328-CC%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E4%B9%A6V1.0.pdf',
-#    'product_buy_lang': '立即购买',
-#    'product_regula_lang': '产品规格书'
-#}
+if not on_rtd:
+	html_theme_options = {
+	    'product_show': True,
+	    'product_name': 'ROC-RK3288-CC',
+	    'product_img': 'http://www.t-firefly.com/upload/portal/20180528/e390c2e0c48911a7be83cef0208fd889.png',
+	    'product_des_one': '',
+	    'product_des_two': 'Firefly 首个超小型开源主板，特有的 USB 3.0 与 DDR4 让其性能更快更稳定，超高性价比的 ROC-RK3328-CC 是你探索程序世界的首选。',
+	    'product_buy': 'https://store.t-firefly.com/goods.php?id=66',
+	    'product_regula': 'http://download.t-firefly.com/%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E6%96%87%E6%A1%A3/ROC-RK3328-CC%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E4%B9%A6V1.0.pdf',
+	    'product_buy_lang': '立即购买',
+	    'product_regula_lang': '产品规格书'
+	}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -139,7 +141,6 @@ htmlhelp_basename = _project_filename
 
 # -- Options for LaTeX output ------------------------------------------------
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
     latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
