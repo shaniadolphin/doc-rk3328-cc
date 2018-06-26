@@ -13,9 +13,17 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+import re
+from docutils import nodes
+from sphinx.errors import SphinxError
+try:
+    from urllib import unquote  # Python 2.X
+except ImportError:
+    from urllib.parse import unquote  # Python 3+
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+IS_READTHEDOCS = os.environ.get('READTHEDOCS') == 'True'
+docs_dir = os.path.dirname(__file__)
 
 # -- Project information -----------------------------------------------------
 
@@ -56,7 +64,9 @@ source_suffix = ['.rst', '.md']
 # Pinyin Support
 from pypinyin import lazy_pinyin
 def to_pinyin(self, s):
-    return '-'.join(lazy_pinyin(s))
+    s = ' '.join(lazy_pinyin(s))
+    s = nodes.fully_normalize_name(s)
+    return nodes.make_id(s)
 
 # Markdown Support
 from recommonmark.parser import CommonMarkParser
@@ -104,7 +114,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-if not on_rtd:
+if not IS_READTHEDOCS:
 	html_theme_options = {
 	    'product_show': True,
 	    'product_name': 'ROC-RK3288-CC',
@@ -142,7 +152,7 @@ htmlhelp_basename = _project_filename
 
 # -- Options for LaTeX output ------------------------------------------------
 
-if on_rtd:
+if IS_READTHEDOCS:
     latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #'papersize': 'letterpaper',
@@ -210,3 +220,122 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+
+from recommonmark.transform import AutoStructify
+def setup(app):
+    # Fixing how references (local links) work with Markdown
+    app.connect('doctree-read', collect_ref_data)
+    app.connect('doctree-resolved', process_refs)
+
+    # Better support for Markdown (see https://recommonmark.readthedocs.io/en/latest/auto_structify.html)
+    app.add_config_value('recommonmark_config', {
+        'enable_eval_rst': True,
+        'enable_auto_toc_tree': True,
+        'auto_toc_tree_section': 'Contents',
+    }, True)
+    app.add_transform(AutoStructify)
+
+# -- Markdown References --------------------------------------------------
+# https://github.com/apiaryio/dredd/blob/a0e999d69ee840778de191fd03acbdeda86e27e2/docs/conf.py#L176:61
+def collect_ref_data(app, doctree):
+    """
+    Finds all anchors and references (local links) within documents,
+    and saves them as meta data
+    """
+    filename = doctree.attributes['source'].replace(docs_dir, '').lstrip('/')
+    docname = filename.replace('.md', '')
+
+    anchors = []
+    references = []
+
+    for node in doctree.traverse(nodes.raw):
+        if 'name=' in node.rawsource:
+            match = re.search(r'name="([^\"]+)', node.rawsource)
+            if match:
+                anchors.append(match.group(1))
+        elif 'id=' in node.rawsource:
+            match = re.search(r'id="([^\"]+)', node.rawsource)
+            if match:
+                anchors.append(match.group(1))
+
+    for node in doctree.traverse(nodes.section):
+        for target in frozenset(node.attributes.get('ids', [])):
+            anchors.append(target)
+
+    for node in doctree.traverse(nodes.reference):
+        uri = node.get('refuri')
+        if uri and not uri.startswith(('http://', 'https://')):
+            references.append(to_reference(uri, basedoc=docname))
+
+    app.env.metadata[docname]['anchors'] = anchors
+    app.env.metadata[docname]['references'] = references
+
+def process_refs(app, doctree, docname):
+    """
+    Fixes all references (local links) within documents, breaks the build
+    if it finds any links to non-existent documents or anchors.
+    """
+    if not 'references' in app.env.metadata[docname]:
+        return
+    for reference in app.env.metadata[docname]['references']:
+        referenced_docname, anchor = parse_reference(reference)
+
+        if referenced_docname not in app.env.metadata:
+            message = "Document '{}' is referenced from '{}', but it could not be found"
+            raise SphinxError(message.format(referenced_docname, docname))
+
+        if anchor and anchor not in app.env.metadata[referenced_docname]['anchors']:
+            message = "Section '{}#{}' is referenced from '{}', but it could not be found"
+            raise SphinxError(message.format(referenced_docname, anchor, docname))
+
+        for node in doctree.traverse(nodes.reference):
+            uri = node.get('refuri')
+            if to_reference(uri, basedoc=docname) == reference:
+                node['refuri'] = to_uri(app, referenced_docname, anchor)
+
+def to_uri(app, docname, anchor=None):
+    #uri = ''
+    #if IS_READTHEDOCS:
+    #    language = app.config.language or 'en'
+    #    version_name = os.environ.get('READTHEDOCS_VERSION')
+    #    uri = '/{}/{}'.format(language, version_name)
+    #uri += '/{}.html'.format(docname)
+
+    uri = '{}.html'.format(docname)
+    if anchor:
+        uri += '#{}'.format(anchor)
+
+    return uri
+
+def to_reference(uri, basedoc=None):
+    """
+    Helper function, compiles a 'reference' from given URI and base
+    document name
+    """
+    if '#' in uri:
+        filename, anchor = uri.split('#', 1)
+        filename = filename or basedoc
+        anchor = to_pinyin(None, unquote(anchor))
+    else:
+        filename = uri or basedoc
+        anchor = None
+
+    if not filename:
+        message = "For self references like '{}' you need to provide the 'basedoc' argument".format(uri)
+        raise ValueError(message)
+
+    reference = os.path.splitext(filename.lstrip('/'))[0]
+    if anchor:
+        reference += '#' + anchor
+    return reference
+
+def parse_reference(reference):
+    """
+    Helper function, parses a 'reference' to document name and anchor
+    """
+    if '#' in reference:
+        docname, anchor = reference.split('#', 1)
+    else:
+        docname = reference
+        anchor = None
+    return docname, anchor
