@@ -12,11 +12,28 @@ sudo apt-get install -f
 
 ## Compile the Root File System
 
-Build a basic Debian system using the `ubuntu-build-service`:
+1. Build the Debian basic system:
 
-```shell
-VERSION=stretch TARGET=desktop ARCH=armhf ./mk-base-debian.sh
-```
+    ``` shell
+    VERSION=stretch TARGET=desktop ARCH=armhf ./mk-base-debian.sh
+    ```
+
+    This will use `live-build` to create a basic Debian Stretch desktop system, which is later packed as file `linaro-stretch-alip-*.tar.gz`. This operation takes time and only needs to run once unless you have modified the `live-build` configuration.
+
+2. Build the rk-debian system:
+    ``` shell
+    VERSION=stretch TARGET=desktop ARCH=armhf ./mk-rootfs.sh
+    ```
+
+    This will install/setup Rockchip components such as mali and video encode/decode, based on the `linaro-stretch-alip-*.tar.gz` file from previous step, to create the full rk-debian system.
+
+3. Create the ext4 image file `linaro-rootfs.img`:
+
+    ``` shell
+    ./mk-image.sh
+    ```
+
+Note: default user and password is "linaro".
 
 # Building Ubuntu Root Filesystem
 
