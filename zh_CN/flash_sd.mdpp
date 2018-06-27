@@ -48,7 +48,7 @@
 
 1. 到 [下载页面]去下载[SDCard Installer]。
 2. 安装运行：
-    + Windows： 解压后运行安装程序，按照提示安装到系统，之后在开始菜单里找到 [SDCard Installer] 并运行它。
+    + Windows： 解压后运行安装程序，按照提示安装到系统，之后在开始菜单里找到 [SDCard Installer]，并**以管理员身份**打开。
     + Linux： 解压后运行其中的 `.AppImage` 文件即可。
     + Mac： 直接双击 `.dwg` 文件，拖动安装到系统或直接运行。
 3. 点击 "Choose an OS" 按钮， 在 "Please select your device" 组合框中选择 "ROC-RK3328-CC"。
@@ -61,6 +61,7 @@
 
 **注意事项**：
 
+- [SDCard Installer] 在 Windows 下运行需要管理员权限，请用鼠标右键点击应用图标，在弹出菜单中选择 **以管理员身份运行**。
 - 有时，当进度达到 99％ 或 100％ 时，可能会出现卸载 SD 卡的错误，这可以忽略，并且不会损坏烧写到 SD 卡的数据：
     ![](img/started_sdcard-installer_umount_fail.png)
 - 在线下载的固件会缓存到本地目录，下次烧写时不用重新下载。缓存目录可以点击左下角的设置按钮，在 "Download Location:" 处设置。

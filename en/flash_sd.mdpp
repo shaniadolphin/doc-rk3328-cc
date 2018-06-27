@@ -38,7 +38,7 @@ The easiest way to flash the [Raw Firmware] is to use the official [SDCard Insta
 
 1. Download [SDCard Installer] from the [Download Page].
 2. Install and run:
-    + Windows: Extract the archive file and run the setup executable inside. After installation, run [SDCard Installer] from the start menu.
+    + Windows: Extract the archive file and run the setup executable inside. After installation, run [SDCard Installer] **as administrator** from the start menu.
     + Linux: Extract the archive file and run the `.AppImage` file inside.
     + Mac: Double click the `.dwg` file, install to the system or run directly.
 3. Click the "Choose an OS" button, and select "ROC-RK3328-CC" in the "Please select your device" combobox.
@@ -54,6 +54,7 @@ The easiest way to flash the [Raw Firmware] is to use the official [SDCard Insta
 
 **Note**:
 
+- To run [SDCard Installer] with proper permission in Windows, you need to right click the shortcut and select **Run as administrator**.
 - Sometimes, when the progress reaches to 99% or 100%, an error of unmounting the SD card may occur, which can be ignored and does no harm to the data flashed to the SD card.
 
     ![](img/started_sdcard-installer_umount_fail.png)
