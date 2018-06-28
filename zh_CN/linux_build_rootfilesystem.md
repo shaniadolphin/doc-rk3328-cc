@@ -39,7 +39,7 @@ sudo apt-get install -f
 
 环境：
 
-- Ubuntu 16.04 64位
+- Ubuntu 16.04 amd64
 
 安装依赖包：
 

@@ -39,7 +39,7 @@ Note: default user and password is "linaro".
 
 Environment:
 
-- Ubuntu 16.04 64 bit
+- Ubuntu 16.04 amd64
 
 Install required packages:
 

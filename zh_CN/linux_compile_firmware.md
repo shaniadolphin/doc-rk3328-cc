@@ -6,17 +6,16 @@
 
 Linux 固件在如下的环境中编译:
 
-- 64 位 CPU
-- Ubuntu 16.04
+- Ubuntu 16.04 amd64
 
 安装以下包:
 
 ``` shell
-sudo apt-get install git repo gnupg flex bison gperf build-essential \
-     zip tar curl libc6-dev gcc-arm-linux-gnueabihf \
-
-     gcc-aarch64-linux-gnu device-tree-compiler lzop libncurses5-dev \
-     libssl1.0.0 libssl-dev mtools
+sudo apt-get install bc bison build-essential curl \
+     device-tree-compiler dosfstools flex gcc-aarch64-linux-gnu \
+     gcc-arm-linux-gnueabihf gdisk git gnupg gperf libc6-dev \
+     libncurses5-dev libpython-dev libssl-dev libssl1.0.0 \
+     lzop mtools parted repo swig tar zip
 ```
 
 ## 下载 Linux SDK
