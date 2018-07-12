@@ -140,7 +140,9 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
-html_logo = 'img/firefly-icon-64.png'
+html_title = 'Firefly Wiki'
+html_favicon = '_static/favicon.ico'
+html_logo = 'img/Logo.png'
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
