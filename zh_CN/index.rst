@@ -24,6 +24,7 @@ ROC-RK3328-CC 使用手册
 
    linux_compile_firmware
    linux_build_rootfilesystem
+   os_LibreELEC
 
 .. toctree::
    :glob:
