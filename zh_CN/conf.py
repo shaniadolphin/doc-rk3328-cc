@@ -117,7 +117,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 if not IS_READTHEDOCS:
 	html_theme_options = {
 	    'product_show': True,
-	    'product_name': 'ROC-RK3288-CC',
+	    'product_name': 'ROC-RK3328-CC',
 	    'product_img': 'http://www.t-firefly.com/upload/portal/20180528/e390c2e0c48911a7be83cef0208fd889.png',
 	    'product_des_one': '',
 	    'product_des_two': 'Firefly 首个超小型开源主板，特有的 USB 3.0 与 DDR4 让其性能更快更稳定，超高性价比的 ROC-RK3328-CC 是你探索程序世界的首选。',
