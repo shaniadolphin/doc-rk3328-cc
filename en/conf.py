@@ -122,7 +122,8 @@ html_theme_options = {
     'product_buy': 'http://shop.t-firefly.com/goods.php?id=65',
     'product_regula': '',
     'product_buy_lang': 'Buy',
-    'product_regula_lang': ''
+    'product_regula_lang': '',
+    'logo_href': 'http://en.t-firefly.com'
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
