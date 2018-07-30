@@ -124,7 +124,8 @@ if not IS_READTHEDOCS:
 	    'product_buy': 'https://store.t-firefly.com/goods.php?id=66',
 	    'product_regula': 'http://download.t-firefly.com/%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E6%96%87%E6%A1%A3/ROC-RK3328-CC%E4%BA%A7%E5%93%81%E8%A7%84%E6%A0%BC%E4%B9%A6V1.0.pdf',
 	    'product_buy_lang': '立即购买',
-	    'product_regula_lang': '产品规格书'
+	    'product_regula_lang': '产品规格书',
+		'logo_href': 'http://wiki.t-firefly.com'
 	}
 
 # Add any paths that contain custom static files (such as style sheets) here,
