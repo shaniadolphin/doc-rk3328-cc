@@ -144,13 +144,20 @@ make -j8
 
 **Packing Fimware in Linux**
 
-After compiling you can use Firefly official script to pack all partition image files into the one true Rockchip firmware, by executing the following command:
+After compiling you can use Firefly official script to pack all partition image files into the one true Rockchip firmware or the one true original firmware, by executing the following command:
 
 ``` shell
+rk firmware:
 ./FFTools/mkupdate/mkupdate.sh update
+
+original firmware:
+./FFTools/mkupdate/sd_mkupdate.sh update
 ```
 
 The resulting file is `rockdev/Image-rk3328_firefly_box/update.img`.
+
+The RK firmware needs to use the `SD_Firmware_Tool` tool and the function mode to select `SD Startup` to create the boot card,
+and original firmware can use the `SDCard-installer` to make the boot card.
 
 **Packing Fimware in Windows**
 

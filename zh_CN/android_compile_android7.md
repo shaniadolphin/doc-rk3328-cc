@@ -144,13 +144,21 @@ make -j8
 
 **在 Linux 下打包固件**
 
-编译完成后使用 Firefly 官方脚本即可打包所有的分区映像成 RK固件：
+编译完成后使用 Firefly 官方脚本即可打包所有的分区映像成 RK固件或 原始固件：
 
 ``` shell
+rk固件:
 ./FFTools/mkupdate/mkupdate.sh update
+
+
+原始固件:
+./FFTools/mkupdate/sd_mkupdate.sh update
 ```
 
 最终生成的文件是 `rockdev/Image-rk3328_firefly_box/update.img`.
+
+RK固件需使用 `SD_Firmware_Tool` 工具，功能模式选择`SD启动`，来制作启动卡，
+而原始固件可使用 `SDCard-installer` 制作启动卡
 
 **在 Windows 下打包固件**
 
